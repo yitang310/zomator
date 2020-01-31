@@ -1,3 +1,10 @@
+#function for checking if api key is provided
+apikey_check <- function(key = NULL){
+  if (is.null(key)){
+    stop("Please provide a zomato API key.")
+  }
+}
+
 #function for searching categories
 get_categories <- function(key){
   apikey_check(key)
