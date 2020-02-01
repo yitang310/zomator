@@ -8,4 +8,8 @@ I've done one of functions named `get_dailymenu`. At the beginning, I set one pa
 
 *January 30, 2020*
 
-Today, I've done another functions named `get_reviews` that is similar to `get_dailymenu`. At first, only one parameter `res_id` is added. 
+Today, I've done another functions named `get_reviews` that is similar to `get_dailymenu`. There are one parameter `res_id`. Once users input the `res_id`, the function will output a dataframe about all information about `reviews`, including rating, reviews text, id, review_time_friendly and so on.
+
+*January 31, 2020*
+
+Making slight changes and adding documentation workflows on both function `get_dailymenu` and `get_reviews`.
