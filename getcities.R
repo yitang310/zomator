@@ -17,7 +17,7 @@
 #state_code (string, optional): Short code for the state
 
 #function for finding the Zomato ID and other details for a city
-get_cities <- function(key,q,lat=NULL,lon=NULL,city_ids=NULL,count=NULL){
+get_cities <- function(key,q=NULL,lat=NULL,lon=NULL,city_ids=NULL,count=NULL){
   source("getcategories.R")
   apikey_check(key)
   if (length(q)==0){
