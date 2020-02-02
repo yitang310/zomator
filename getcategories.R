@@ -3,10 +3,12 @@
 #' Enter parameter values
 #' @param user-key: your API key
 #'
-#' @return the data frame of category types
+#' @return the list of category types
 #' category_id (integer): ID of the category type
 #' category_name (string): Name of the category type
 #'
+#' @name get_categories
+#' @title get_categories
 #' @export
 #' @examples
 #' get_categories(key="xxxxxx")
@@ -23,7 +25,7 @@ get_categories <- function(key = NULL){
     config = httr::add_headers("user-key" = key)
   )
   #check if the api key can used to connect to zomato
-  apikey_connectioncheck(res)
+  apikey_connectioncheck(res=NULL)
   #read json into dataframe
   datalist <- jsonlite::fromJSON(
     httr::content(

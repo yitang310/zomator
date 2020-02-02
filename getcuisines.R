@@ -6,10 +6,12 @@
 #' @param lat: latitude
 #' @param lon: longitude
 
-#' @return Zomato Restaurant Collections in a City
+#' @return all cuisines of restaurants listed in a city
 #' cuisine_id (integer): ID of the cuisine
 #' cuisine_name (string): Name of the cuisine
 #'
+#' @name get_cuisines
+#' @title get_cuisines
 #' @export
 #' @examples
 #' get_cuisines(key="xxxxxx")

@@ -16,12 +16,14 @@
 #' res_count (integer, optional): Number of restaurants in the collection
 #' share_url (string, optional): short URL for apps and social sharing
 #'
+#' @name get_collections
+#' @title get_collections
 #' @export
 #' @examples
 #' get_collections(key="xxxxxx")
 
 #function for finding Zomato Restaurant Collections in a City
-get_collections<-function(key,city_id,lat=NULL,lon=NULL,count=NULL){
+get_collections<-function(key=NULL,city_id=NULL,lat=NULL,lon=NULL,count=NULL){
   source("getcategories.R")
   #check if given api
   apikey_check(key)

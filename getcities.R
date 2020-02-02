@@ -8,7 +8,7 @@
 #' @param city_ids: comma separated city_id values
 #' @param count: number of max results to display
 #'
-#' @return the data frame of cities
+#' @return Zomato ID and other details for a city
 #' id (integer): ID of the city
 #' name (string): City name
 #' country_id (integer, optional): ID of the country
@@ -18,12 +18,14 @@
 #' state_name (string, optional): Name of the state
 #' state_code (string, optional): Short code for the state
 #'
+#' @name get_cities
+#' @title get_cities
 #' @export
 #' @examples
 #' get_cities(key="xxxxxx")
 
 #function for finding the Zomato ID and other details for a city
-get_cities <- function(key,q,lat=NULL,lon=NULL,city_ids=NULL,count=NULL){
+get_cities <- function(key=NULL,q=NULL,lat=NULL,lon=NULL,city_ids=NULL,count=NULL){
   source("getcategories.R")
   #check if given api
   apikey_check(key)
