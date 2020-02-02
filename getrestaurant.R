@@ -1,19 +1,16 @@
 #' @author Chenxi Yang <chenxxiyang@@gmail.com>
 #'
 #' @description
-#' return information of the chosen restaurant
+#' Get restaurant details
 #' 
 #' @param user-key your API key
-#' @param res_id id of restaurant
-#'
-#' @return
-#' information about the restaurant
+#' @param res_id id of restaurant whose details are requested
 #' 
 #' @name 
 #' get_restaurant
 #' 
 #' @title 
-#' get information of 84 aspects about the restaurant
+#' Get restaurant details
 #' 
 #' @export
 #' @examples
@@ -22,7 +19,8 @@
 source("getcategories.R")
 
 # Function of getting information about the restaurant
-get_restaurant = function(api_key, res_id) {
+
+get_restaurant <- function(api_key=NULL, res_id=NULL) {
   
   # Check the validation of api key
   apikey_check(api_key)
@@ -32,7 +30,7 @@ get_restaurant = function(api_key, res_id) {
     stop("Please enter the restaurant ID.")
   }
   
-  URL <- 'https://developers.zomato.com/api/v2.1/search?'
+  URL <- 'https://developers.zomato.com/api'
   params <- list(res_id = res_id)
   
   # Sending request
@@ -41,20 +39,21 @@ get_restaurant = function(api_key, res_id) {
     path = paste0("/api/v2.1/", "restaurant"),
     config = httr::add_headers("user-key" = api_key),
     query = params,
-    user_agent("httr")
+    httr::user_agent("httr")
   )
   
   # Check whether the connection is successful
   apikey_connectioncheck(resp=NULL)
   
   # Convert json into dataframe
-  resdata <- jsonlite::fromJSON(content(resp, as = 'text', encoding = 'UTF-8'), flatten = TRUE)
+  resdata <- jsonlite::fromJSON(httr::content(resp, as = 'text', encoding = 'UTF-8'), flatten = TRUE)
   
   # Change the format of dataframe
   resdata <- unlist(resdata, recursive = FALSE)
   names(resdata) <- gsub("restaurant.|location.|user_rating.", "", names(resdata))
-  data
   column <- "apikey|url|link|thumb|featured_image|zomato_events|R.res_id|custom|profile_image"
   names(resdata) <- gsub("restaurant.|location.|user_rating.", "", names(resdata))
-  as.data.frame(resdata)[1,]
+  resdata <- as.data.frame(resdata)[1,]
+  
+  return(resdata)
 }
