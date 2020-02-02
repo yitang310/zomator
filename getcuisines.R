@@ -1,24 +1,30 @@
-#' @author Yi Tang <tangyi2014@@gmail.com>
+#' @author
+#' Yi Tang <tangyi2014@@gmail.com>
 #'
-#' Enter parameter values
-#' @param user-key: your API key
-#' @param city_id: id of the city for which collections are needed
-#' @param lat: latitude
-#' @param lon: longitude
-
-#' @return all cuisines of restaurants listed in a city
-#' cuisine_id (integer): ID of the cuisine
-#' cuisine_name (string): Name of the cuisine
+#' @description
+#' search for all cuisines of restaurants listed in a city
 #'
-#' @name get_cuisines
-#' @title get_cuisines
+#' @param user-key your API key
+#' @param city_id id of the city for which collections are needed
+#' @param lat latitude
+#' @param lon longitude
+#'
+#' @return
+#' cuisine_id (integer) ID of the cuisine
+#' cuisine_name (string) Name of the cuisine
+#'
+#' @name
+#' get_cuisines
+#'
+#' @title
+#' get cuisines ID and name
+#'
 #' @export
 #' @examples
-#' get_cuisines(key="xxxxxx")
+#' get_cuisines(key="xxxxxx",city_id=000)
 
 #function for finding all cuisines of restaurants listed in a city
 get_cuisines<-function(key=NULL,city_id=NULL,lat=NULL,lon=NULL){
-  source("getcategories.R")
   #check if given api
   apikey_check(key)
   #check if given city_id

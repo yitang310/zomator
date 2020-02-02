@@ -1,14 +1,22 @@
-#' @author Yi Tang <tangyi2014@@gmail.com>
+#' @author
+#' Yi Tang <tangyi2014@@gmail.com>
+#'
+#' @description
+#' return the list of category types
 #'
 #' Enter parameter values
-#' @param user-key: your API key
+#' @param user-key your API key
 #'
-#' @return the list of category types
-#' category_id (integer): ID of the category type
-#' category_name (string): Name of the category type
+#' @return
+#' category_id (integer) ID of the category type
+#' category_name (string) Name of the category type
 #'
-#' @name get_categories
-#' @title get_categories
+#' @name
+#' get_categories
+#'
+#' @title
+#' category types
+#'
 #' @export
 #' @examples
 #' get_categories(key="xxxxxx")
@@ -25,7 +33,7 @@ get_categories <- function(key = NULL){
     config = httr::add_headers("user-key" = key)
   )
   #check if the api key can used to connect to zomato
-  apikey_connectioncheck(res=NULL)
+  apikey_connectioncheck(res)
   #read json into dataframe
   datalist <- jsonlite::fromJSON(
     httr::content(
@@ -45,7 +53,8 @@ apikey_check <- function(key = NULL){
   }
 }
 #function for checking if api can used to connect to zomato
-apikey_connectioncheck<-function(res = NULL){
+apikey_connectioncheck<-function(res){
+  print(res)
   if (!is.null(httr::content(res)$code)){
     stop("please try another API key.")
   }

@@ -1,32 +1,38 @@
-#' @author Yi Tang <tangyi2014@@gmail.com>
+#' @author
+#' Yi Tang <tangyi2014@@gmail.com>
 #'
-#' Enter parameter values
-#' @param user-key: your API key
-#' @param q: query by city name
-#' @param lat: latitude
-#' @param lon: longitude
-#' @param city_ids: comma separated city_id values
-#' @param count: number of max results to display
+#' @description
+#' search for Zomato ID and other details for a city
 #'
-#' @return Zomato ID and other details for a city
-#' id (integer): ID of the city
-#' name (string): City name
-#' country_id (integer, optional): ID of the country
-#' country_name (string, optional): Name of the country
-#' is_state (boolean, optional): Whether this location is a state
-#' state_id (integer, optional): ID of the state
-#' state_name (string, optional): Name of the state
-#' state_code (string, optional): Short code for the state
+#' @param user-key your API key
+#' @param q query by city name
+#' @param lat latitude
+#' @param lon longitude
+#' @param city_ids comma separated city_id values
+#' @param count number of max results to display
 #'
-#' @name get_cities
-#' @title get_cities
+#' @return
+#' id (integer) ID of the city
+#' name (string) City name
+#' country_id (integer, optional) ID of the country
+#' country_name (string, optional) Name of the country
+#' is_state (boolean, optional) Whether this location is a state
+#' state_id (integer, optional) ID of the state
+#' state_name (string, optional) Name of the state
+#' state_code (string, optional) Short code for the state
+#'
+#' @name
+#' get_cities
+#'
+#' @title
+#' get cities ID
+#'
 #' @export
 #' @examples
-#' get_cities(key="xxxxxx")
+#' get_cities(key="xxxxxx",q="xxx")
 
 #function for finding the Zomato ID and other details for a city
 get_cities <- function(key=NULL,q=NULL,lat=NULL,lon=NULL,city_ids=NULL,count=NULL){
-  source("getcategories.R")
   #check if given api
   apikey_check(key)
   #check if given city name

@@ -1,30 +1,36 @@
-#' @author Yi Tang <tangyi2014@@gmail.com>
+#' @author
+#' Yi Tang <tangyi2014@@gmail.com>
 #'
-#' Enter parameter values
-#' @param user-key: your API key
-#' @param city_id: id of the city for which collections are needed
-#' @param lat: latitude
-#' @param lon: longitude
-#' @param count: number of max results to display
+#' @description
+#' search for Zomato Restaurant Collections in a City
 #'
-#' @return Zomato Restaurant Collections in a City
-#' collection_id (integer, optional): ID of the collection of restaurants
-#' title (string, optional): Collection name
-#' url (string, optional): URL of the collection page
-#' description (string, optional): Short description of the collection
-#' image_url (string, optional): URL for header image of the collection
-#' res_count (integer, optional): Number of restaurants in the collection
-#' share_url (string, optional): short URL for apps and social sharing
+#' @param user-key your API key
+#' @param city_id id of the city for which collections are needed
+#' @param lat latitude
+#' @param lon longitude
+#' @param count number of max results to display
 #'
-#' @name get_collections
-#' @title get_collections
+#' @return
+#' collection_id (integer, optional) ID of the collection of restaurants
+#' title (string, optional) Collection name
+#' url (string, optional) URL of the collection page
+#' description (string, optional) Short description of the collection
+#' image_url (string, optional) URL for header image of the collection
+#' res_count (integer, optional) Number of restaurants in the collection
+#' share_url (string, optional) short URL for apps and social sharing
+#'
+#' @name
+#' get_collections
+#'
+#' @title
+#' get Zomato Restaurant collections
+#'
 #' @export
 #' @examples
-#' get_collections(key="xxxxxx")
+#' get_collections(key="xxxxxx",city_id=000)
 
 #function for finding Zomato Restaurant Collections in a City
 get_collections<-function(key=NULL,city_id=NULL,lat=NULL,lon=NULL,count=NULL){
-  source("getcategories.R")
   #check if given api
   apikey_check(key)
   #check if given city_id
