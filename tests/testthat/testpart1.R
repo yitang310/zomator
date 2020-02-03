@@ -2,7 +2,7 @@
 context("Test functions part 1")
 
 #please replace xxxxxx with your own API key.
-key1<-"xxxxxx"
+key1<-"528b6ee8d624e5e3e741f1fbd895b760"
 
 #test get_categories
 test_that("test get_categories",{
