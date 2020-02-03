@@ -17,9 +17,6 @@ list
 Get Foodie and Nightlife Index, list of popular
 cuisines and nearby restaurants around the given coordinates
 }
-\examples{
-get_geocode("528b6ee8d624e5e3e741f1fbd895b760","40.742051","-74.004821")
-}
 \references{
 \url{https://developers.zomato.com/documentation#!/common/geocode}
 }

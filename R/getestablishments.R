@@ -4,9 +4,10 @@
 #' location/City input can be provided in the following ways:
 #' 1. Using Zomato City ID
 #' 2. Using coordinates of any location within a city
-#' List of all restaurants categorized under a particular
-#' restaurant type can obtained using /Search API with
-#' Establishment ID and location details as inputs
+#'
+# List of all restaurants categorized under a particular
+# restaurant type can obtained using /Search API with
+# Establishment ID and location details as inputs
 #'
 #' @param use_key API key, string
 #' @param city_id id of the city, integer
@@ -14,7 +15,7 @@
 #' @param lon longitude, double
 #' @return list
 #' @references \url{https://developers.zomato.com/documentation#!/common/establishments}
-#'
+
 #' @name
 #' get_establishments
 #'
@@ -22,8 +23,7 @@
 #' get establishments
 
 
-
-get_establishments <- function(use_key,city_id,lat=NULL,lon=NULL){
+get_establishments<-function(use_key,city_id,lat=NULL,lon=NULL){
   url <- httr::modify_url("https://developers.zomato.com",
                     path = "/api/v2.1/establishments")
 

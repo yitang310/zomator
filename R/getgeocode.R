@@ -15,10 +15,6 @@
 #'
 #' @title
 #' get geocode
-#'
-#' @export
-#' @examples
-#' get_geocode("528b6ee8d624e5e3e741f1fbd895b760","40.742051","-74.004821")
 
 
 library(httr)
