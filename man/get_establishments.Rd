@@ -4,10 +4,11 @@
 \alias{get_establishments}
 \title{get establishments}
 \usage{
-get_establishments(use_key, city_id, lat = NULL, lon = NULL)
+get_establishments(key = NULL, city_id = NULL, lat = NULL,
+  lon = NULL)
 }
 \arguments{
-\item{use_key}{API key, string}
+\item{key}{API key, string}
 
 \item{city_id}{id of the city, integer}
 
@@ -17,16 +18,15 @@ get_establishments(use_key, city_id, lat = NULL, lon = NULL)
 }
 \value{
 list
+establishment_id (integer) ID of the establishment type
+establishment_name (string) Name of the establishment type
 }
 \description{
 :
-Get a list of restaurant types in a city. The
-location/City input can be provided in the following ways:
-1. Using Zomato City ID
-2. Using coordinates of any location within a city
+Get a list of restaurant types in a city.
 }
-\references{
-\url{https://developers.zomato.com/documentation#!/common/establishments}
+\examples{
+get_establishments("528b6ee8d624e5e3e741f1fbd895b760",280)
 }
 \author{
 Huazi Li <632473742@qq.com>

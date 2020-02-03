@@ -55,7 +55,7 @@ get_search<- function(key=NULL,
   )
 
   # Sending request
-  resp <- httr::GET(
+  res <- httr::GET(
     url = URL,
     path = paste0("/api/v2.1/", "search"),
     config = httr::add_headers("user-key" = key),
@@ -65,15 +65,15 @@ get_search<- function(key=NULL,
   )
 
   # Check if parameters are right
-  if (is.null(httr::content(resp)$results_found)){
+  if (is.null(httr::content(res)$results_found)){
     stop("Please try other parameter values.")
   }
 
   # Check whether the connection is successful
-  apikey_connectioncheck(resp)
+  apikey_connectioncheck(res)
 
   # Convert json into dataframe
-  sedata <- jsonlite::fromJSON(httr::content(resp, as = 'text', encoding = 'UTF-8'), flatten = TRUE)
+  sedata <- jsonlite::fromJSON(httr::content(res, as = 'text', encoding = 'UTF-8'), flatten = TRUE)
 
   return(sedata$restaurants)
 }

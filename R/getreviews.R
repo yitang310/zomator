@@ -51,7 +51,7 @@ get_reviews <- function(key=NULL, res_id=NULL) {
   params <- list(res_id = res_id)
 
   # Sending request
-  resp <- httr::GET(
+  res <- httr::GET(
     url = URL,
     path = paste0("/api/v2.1/", "reviews"),
     config = httr::add_headers("user-key" = key),
@@ -60,10 +60,10 @@ get_reviews <- function(key=NULL, res_id=NULL) {
   )
 
   # Check whether the connection is successful
-  apikey_connectioncheck(resp)
+  apikey_connectioncheck(res)
 
   # Convert json into dataframe
-  redata <- jsonlite::fromJSON(httr::content(resp, as = 'text', encoding = 'UTF-8'), flatten = TRUE)
+  redata <- jsonlite::fromJSON(httr::content(res, as = 'text', encoding = 'UTF-8'), flatten = TRUE)
 
   return(redata$user_reviews)
 }

@@ -8,6 +8,8 @@ get_cities(key = NULL, q = NULL, lat = NULL, lon = NULL,
   city_ids = NULL, count = NULL)
 }
 \arguments{
+\item{key}{your API key}
+
 \item{q}{query by city name}
 
 \item{lat}{latitude}
@@ -17,8 +19,6 @@ get_cities(key = NULL, q = NULL, lat = NULL, lon = NULL,
 \item{city_ids}{comma separated city_id values}
 
 \item{count}{number of max results to display}
-
-\item{user-key}{your API key}
 }
 \value{
 id (integer) ID of the city
