@@ -10,7 +10,7 @@
 #' @param lon longitude, double
 #'
 #' @return
-#' list
+#' dataframe
 #' establishment_id (integer) ID of the establishment type
 #' establishment_name (string) Name of the establishment type
 #'
@@ -22,7 +22,7 @@
 #'
 #' @export
 #' @examples
-#' get_establishments("528b6ee8d624e5e3e741f1fbd895b760",280)
+#' get_establishments(key = "528b6ee8d624e5e3e741f1fbd895b760",city_id = 280)
 
 # function for get a list of restaurant types in a city
 get_establishments <- function(key = NULL,city_id = NULL,lat = NULL,lon = NULL){
@@ -35,37 +35,20 @@ get_establishments <- function(key = NULL,city_id = NULL,lat = NULL,lon = NULL){
   }
 
   url <- httr::modify_url("https://developers.zomato.com",
-                    path = "/api/v2.1/establishments")
-  params=list("city_id" = city_id,"lat" = lat, "lon" = lon)
+                          path = "/api/v2.1/establishments")
+  params <- list("city_id" = city_id,"lat" = lat, "lon" = lon)
   res <- httr::GET(
     url,
     httr::add_headers(Accept="application/json","user-key"=key),query=params)
-
-  return(zomato_parser(res))
-}
-
-# function to read json to list
-zomato_parser <- function(res) {
-  if (httr::http_type(res) != "application/json") {
-    stop("API did not return json", call. = FALSE)
-  }
-  parsed <- jsonlite::fromJSON(
-    httr::content(res, "text", encoding = 'UTF-8'),
-    simplifyVector = FALSE)
-  # handle error
-  if (httr::http_error(res)) {
-    stop(
-      sprintf(
-        "Zomato API request failed [%s]\n%s\n<%s>",
-        status_code(res),
-        parsed$message,
-        res$url
-      ),
-      call. = FALSE
-    )
-  }
-  structure(
-    list(content = parsed,response = res),
-    class = "zomato_api"
+  datalist <- jsonlite::fromJSON(
+    httr::content(
+      res, as = "text", type = "application/json", encoding = "UTF-8"
+    ),
+    flatten = TRUE
   )
+  #check if return results
+  if (length(datalist$establishments) == 0){
+    stop("Please try another city ID.")
+  }
+  return(datalist$establishments)
 }

@@ -17,7 +17,7 @@ get_establishments(key = NULL, city_id = NULL, lat = NULL,
 \item{lon}{longitude, double}
 }
 \value{
-list
+dataframe
 establishment_id (integer) ID of the establishment type
 establishment_name (string) Name of the establishment type
 }
@@ -26,7 +26,7 @@ establishment_name (string) Name of the establishment type
 Get a list of restaurant types in a city.
 }
 \examples{
-get_establishments("528b6ee8d624e5e3e741f1fbd895b760",280)
+get_establishments(key = "528b6ee8d624e5e3e741f1fbd895b760",city_id = 280)
 }
 \author{
 Huazi Li <632473742@qq.com>

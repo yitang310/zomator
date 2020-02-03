@@ -3,7 +3,7 @@
 #' @description
 #' Get restaurant details
 #'
-#' @param user-key your API key
+#' @param key your API key
 #' @param res_id id of restaurant whose details are requested
 #'
 #' @name
@@ -14,15 +14,15 @@
 #'
 #' @export
 #' @examples
-#' get_restaurant(api_key="528b6ee8d624e5e3e741f1fbd895b760", res_id="16774318")
+#' get_restaurant(key="528b6ee8d624e5e3e741f1fbd895b760", res_id="16774318")
 
 
 # Function of getting information about the restaurant
 
-get_restaurant <- function(api_key=NULL, res_id=NULL) {
+get_restaurant <- function(key=NULL, res_id=NULL) {
 
   # Check the validation of api key
-  apikey_check(api_key)
+  apikey_check(key)
 
   # Check whether res_id is given
   if (is.null(res_id)){
@@ -36,7 +36,7 @@ get_restaurant <- function(api_key=NULL, res_id=NULL) {
   resp <- httr::GET(
     url = URL,
     path = paste0("/api/v2.1/", "restaurant"),
-    config = httr::add_headers("user-key" = api_key),
+    config = httr::add_headers("user-key" = key),
     query = params,
     httr::user_agent("httr")
   )

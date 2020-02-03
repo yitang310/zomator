@@ -4,18 +4,18 @@
 \alias{get_restaurant}
 \title{Get restaurant details}
 \usage{
-get_restaurant(api_key = NULL, res_id = NULL)
+get_restaurant(key = NULL, res_id = NULL)
 }
 \arguments{
-\item{res_id}{id of restaurant whose details are requested}
+\item{key}{your API key}
 
-\item{user-key}{your API key}
+\item{res_id}{id of restaurant whose details are requested}
 }
 \description{
 Get restaurant details
 }
 \examples{
-get_restaurant(api_key="528b6ee8d624e5e3e741f1fbd895b760", res_id="16774318")
+get_restaurant(key="528b6ee8d624e5e3e741f1fbd895b760", res_id="16774318")
 }
 \author{
 Chenxi Yang <chenxxiyang@gmail.com>

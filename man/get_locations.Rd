@@ -4,13 +4,12 @@
 \alias{get_locations}
 \title{get locations}
 \usage{
-get_locations(use_key, location_name, lat = NULL, lon = NULL,
-  count = NULL)
+get_locations(key, query, lat = NULL, lon = NULL, count = NULL)
 }
 \arguments{
-\item{use_key}{API key, string}
+\item{key}{API key, string}
 
-\item{location_name}{suggestion for location name, string}
+\item{query}{suggestion for location name, string}
 
 \item{lat}{latitude, double}
 
@@ -19,15 +18,16 @@ get_locations(use_key, location_name, lat = NULL, lon = NULL,
 \item{count}{max number of results to fetch, integer}
 }
 \value{
-list
+
 }
 \description{
 :
 Search for Zomato locations by keyword. Provide
 coordinates to get better search results
 }
-\references{
-\url{https://developers.zomato.com/documentation#!/location/locations}
+\examples{
+get_locations("528b6ee8d624e5e3e741f1fbd895b760","van")
+
 }
 \author{
 Huazi Li <632473742@qq.com>

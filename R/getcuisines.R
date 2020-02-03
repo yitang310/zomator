@@ -4,7 +4,7 @@
 #' @description
 #' search for all cuisines of restaurants listed in a city
 #'
-#' @param user-key your API key
+#' @param key your API key
 #' @param city_id id of the city for which collections are needed
 #' @param lat latitude
 #' @param lon longitude
