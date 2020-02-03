@@ -17,13 +17,6 @@
 #' @title
 #' get locations
 #'
-#' @export
-#' @examples
-#' get_locations("528b6ee8d624e5e3e741f1fbd895b760","van")
-
-
-
-
 
 get_locations<-function(use_key,location_name,
                         lat=NULL,lon=NULL,count=NULL){

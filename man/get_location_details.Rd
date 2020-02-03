@@ -20,9 +20,6 @@ list
 Get Foodie Index, Nightlife Index, Top Cuisines
 and Best rated restaurants in a given location
 }
-\examples{
-get_location_details("528b6ee8d624e5e3e741f1fbd895b760",36932,"group")
-}
 \references{
 \url{https://developers.zomato.com/documentation#!/location/location_details}
 }

@@ -25,9 +25,6 @@ location/City input can be provided in the following ways:
 1. Using Zomato City ID
 2. Using coordinates of any location within a city
 }
-\examples{
-get_establishments("528b6ee8d624e5e3e741f1fbd895b760", "256")
-}
 \references{
 \url{https://developers.zomato.com/documentation#!/common/establishments}
 }

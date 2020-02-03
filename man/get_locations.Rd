@@ -26,9 +26,6 @@ list
 Search for Zomato locations by keyword. Provide
 coordinates to get better search results
 }
-\examples{
-get_locations("528b6ee8d624e5e3e741f1fbd895b760","van")
-}
 \references{
 \url{https://developers.zomato.com/documentation#!/location/locations}
 }
