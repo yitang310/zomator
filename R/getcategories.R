@@ -56,6 +56,8 @@ apikey_check <- function(key = NULL){
 apikey_connectioncheck<-function(res){
   print(res)
   if (!is.null(httr::content(res)$code)){
-    stop("please try another API key.")
+    if(httr::content(res)$code==403){
+      stop("please try another API key.")
+    }
   }
 }
