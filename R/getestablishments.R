@@ -15,6 +15,7 @@
 #' @param lon longitude, double
 #' @return list
 #' @references \url{https://developers.zomato.com/documentation#!/common/establishments}
+
 #' @name
 #' get_establishments
 #'
@@ -23,7 +24,7 @@
 #'
 #' @export
 #' @examples
-#' get_establishments("528b6ee8d624e5e3e741f1fbd895b760", city_id=256)
+#' get_establishments("528b6ee8d624e5e3e741f1fbd895b760",280)
 
 
 get_establishments<-function(use_key,city_id,lat=NULL,lon=NULL){
@@ -52,7 +53,7 @@ zomato_parser <- function(resp) {
     stop("API did not return json", call. = FALSE)
   }
 
-  parsed <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)
+  parsed <- jsonlite::fromJSON(httr::content(resp, "text", encoding = 'UTF-8'), simplifyVector = FALSE)
 
   if (httr::http_error(resp)) {
     stop(
