@@ -1,9 +1,8 @@
 #' @author Huazi Li <632473742@@qq.com>
-
 #' @description:
-# Search for Zomato locations by keyword. Provide
-# coordinates to get better search results
-#
+#' Search for Zomato locations by keyword. Provide
+#' coordinates to get better search results
+#'
 #' @param use_key API key, string
 #' @param location_name suggestion for location name, string
 #' @param lat latitude, double
@@ -11,21 +10,24 @@
 #' @param count max number of results to fetch, integer
 #' @return list
 #' @references \url{https://developers.zomato.com/documentation#!/location/locations}
-
-#' @name 
+#'
+#' @name
 #' get_locations
-#' 
+#'
+#' @title
+#' get locations
+#'
 #' @export
 #' @examples
-#' get_locations(api_key="xx", location_name="yy", lat="xxxx",lon="xxx",count="xzz")
+#' get_locations("528b6ee8d624e5e3e741f1fbd895b760","van")
 
 
-library(httr)
+
 
 
 get_locations<-function(use_key,location_name,
                         lat=NULL,lon=NULL,count=NULL){
-  url <- modify_url("https://developers.zomato.com",
+  url <- httr::modify_url("https://developers.zomato.com",
                     path = "/api/v2.1/locations")
 
   params=list()
@@ -42,7 +44,7 @@ get_locations<-function(use_key,location_name,
     params$count=count
   }
 
-  resp <- GET(url,add_headers(Accept="application/json",
+  resp <- httr::GET(url,httr::add_headers(Accept="application/json",
                               "user-key"=use_key),query=params)
 
   return(zomato_parser(resp))

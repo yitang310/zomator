@@ -19,7 +19,7 @@
 #'
 #' @export
 #' @examples
-#' get_categories(“00b8630a1745b3dda0d7ec926bba5c04”)
+#' get_categories("00b8630a1745b3dda0d7ec926bba5c04")
 
 
 #function for getting categories
