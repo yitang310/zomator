@@ -23,7 +23,7 @@
 #'
 #' @export
 #' @examples
-#' get_establishments("528b6ee8d624e5e3e741f1fbd895b760", 256)
+#' get_establishments("528b6ee8d624e5e3e741f1fbd895b760", city_id=256)
 
 
 get_establishments<-function(use_key,city_id,lat=NULL,lon=NULL){
