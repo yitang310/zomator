@@ -9,16 +9,16 @@ test_that("test get_dailymenu",{
   expect_error(get_dailymenus())
   expect_error(get_dailymenu("123456"))
   expect_error(get_dailymenu(key3, "123456"))
-  expect_is(get_dailymenu(key3), "data.frame")
-  expect_true(nrow(get_dailymenu(key3)) > 0)
+  expect_is(get_dailymenu(key3,16507624), "data.frame")
+  expect_true(nrow(get_dailymenu(key3,16507624)) > 0)
 })
 
 #test get_reviews
 test_that("test get_reviews",{
   expect_error(get_reviews())
   expect_error(get_reviews("123456"))
-  expect_true(nrow(get_reviews(key3)) > 0)
-  expect_true(ncol(get_reviews(key3)) != 0)
+  expect_true(nrow(get_reviews(key3,256)) > 0)
+  expect_true(ncol(get_reviews(key3,256)) != 0)
   expect_is(get_reviews(key3,16507624), "data.frame")
 })
 
@@ -36,6 +36,6 @@ test_that("test get_search",{
   expect_error(get_search())
   expect_error(get_search("123456"))
   expect_is(get_search(key3), "data.frame")
-  expect_true(nrow(get_search(key3) != 0))
+  expect_true(length(get_search(key3)) != 0)
   expect_true(nrow(get_search(key3,lat="40.732013", lon="-73.996155")) == 20)
 })
