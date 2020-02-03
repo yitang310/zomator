@@ -3,6 +3,9 @@
 # zomator
 Wrapper to the Zomato API
 
+# Author
+Yi Tang, Chenxi Yang, Huazi Li
+
 # Installation
 `zomator` can be installed from our group [Github](https://github.com/yitang310/zomator). 
 
