@@ -4,7 +4,7 @@
 #' @description
 #' search for Zomato ID and other details for a city
 #'
-#' @param user-key your API key
+#' @param key your API key
 #' @param q query by city name
 #' @param lat latitude
 #' @param lon longitude

@@ -3,17 +3,20 @@
 #' @description
 #' Search for restaurants
 #'
-#' @param user-key your API key
-#' @param query search keyword
+#' @param key your API key
+#' @param q search keyword
 #' @param entity_id location id
 #' @param entity_type location type city/subzone/zone/landmark/metro/group
+#' @param start fetch results after offset
+#' @param count max number of results to display
 #' @param lat latitude
 #' @param lon longitude
 #' @param radius radius around (lat,lon)
 #' @param cuisines list of cuisine id's separated by comma
 #' @param establishment_type estblishment id obtained from establishments call
 #' @param collection_id collection id obtained from collections call
-#' @param sort sort restaurants by cost/rating/real_distance
+#' @param category category ids obtained from categories call
+#' @param sort sort restaurants by cost/rating/real_distance,choosing from cost,rating and real_distance
 #' @param order used with 'sort' parameter to define ascending/descending
 #'
 #' @name
@@ -24,12 +27,12 @@
 #'
 #' @export
 #' @examples
-#' get_search(api_key="00b8630a1745b3dda0d7ec926bba5c04", q="van")
+#' get_search(key="00b8630a1745b3dda0d7ec926bba5c04", q="van")
 
 
 # Function of getting information about the restaurant
 
-get_search<- function(api_key=NULL,
+get_search<- function(key=NULL,
                       q = NULL, entity_id = NULL, entity_type = NULL,
                       start = NULL, count = NULL, lat = NULL,
                       lon = NULL,radius = NULL, cuisines = NULL,
@@ -40,7 +43,7 @@ get_search<- function(api_key=NULL,
   # order: asc/desc
 
   # Check the validation of api key
-  apikey_check(api_key)
+  apikey_check(key)
 
   URL <- 'https://developers.zomato.com'
   params <- list(
@@ -55,7 +58,7 @@ get_search<- function(api_key=NULL,
   resp <- httr::GET(
     url = URL,
     path = paste0("/api/v2.1/", "search"),
-    config = httr::add_headers("user-key" = api_key),
+    config = httr::add_headers("user-key" = key),
     query = params,
     httr::user_agent("httr")
 

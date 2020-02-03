@@ -4,7 +4,7 @@
 #' @description
 #' search for Zomato Restaurant Collections in a City
 #'
-#' @param user-key your API key
+#' @param key your API key
 #' @param city_id id of the city for which collections are needed
 #' @param lat latitude
 #' @param lon longitude
