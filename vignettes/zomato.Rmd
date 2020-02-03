@@ -1,0 +1,101 @@
+---
+title: "zomator"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{zomato}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(zomator)
+```
+* requirement  
+ go to [Zomato Web Site](https://developers.zomato.com/api#headline1) request An API Key
+
+
+```{getcategories}
+
+## command  get_categories("123456")
+## output
+
+
+```
+
+
+```{getcities}
+
+```
+
+
+```{getcollections}
+
+```
+
+
+
+```{getcuisines}
+
+```
+
+
+
+```{getgetdailymenu}
+
+```
+
+
+```{getestablishments}
+
+```
+
+
+```{getgeocode}
+
+```
+
+
+
+```{getlocation_details}
+
+```
+
+
+```{getlocations}
+
+```
+
+```{getgetrestaurant}
+
+```
+
+
+```{getreviews}
+
+```
+
+
+```{getsearch}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
