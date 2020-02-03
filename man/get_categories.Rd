@@ -19,7 +19,7 @@ return the list of category types
 Enter parameter values
 }
 \examples{
-get_categories(“00b8630a1745b3dda0d7ec926bba5c04”)
+get_categories("00b8630a1745b3dda0d7ec926bba5c04")
 }
 \author{
 Yi Tang <tangyi2014@gmail.com>
