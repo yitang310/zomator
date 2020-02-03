@@ -4,15 +4,13 @@
 \alias{get_search}
 \title{Search for restaurants}
 \usage{
-get_search(api_key = NULL, query = NULL, entity_id = NULL,
-  entity_type = NULL, q = NULL, start = NULL, count = NULL,
-  lat = NULL, lon = NULL, radius = NULL, cuisines = NULL,
+get_search(api_key = NULL, q = NULL, entity_id = NULL,
+  entity_type = NULL, start = NULL, count = NULL, lat = NULL,
+  lon = NULL, radius = NULL, cuisines = NULL,
   establishment_type = NULL, collection_id = NULL, category = NULL,
   sort = NULL, order = NULL)
 }
 \arguments{
-\item{query}{search keyword}
-
 \item{entity_id}{location id}
 
 \item{entity_type}{location type city/subzone/zone/landmark/metro/group}
@@ -34,13 +32,15 @@ get_search(api_key = NULL, query = NULL, entity_id = NULL,
 \item{order}{used with 'sort' parameter to define ascending/descending}
 
 \item{user-key}{your API key}
+
+\item{query}{search keyword}
 }
 \description{
 Search for restaurants
 }
 \examples{
-get_restaurant(api_key="xxxxxx", query="xxxxxx", entity_id="xxxxxx", entity_type="xxxxxx",
-q="xxxxxx", start="xxxxxx", count="xxxxxx", lat="xxxxxx", lon="xxxxxx",radius="xxxxxx",
+get_restaurant(api_key="xxxxxx", q="xxxxxx", entity_id="xxxxxx", entity_type="xxxxxx",
+start="xxxxxx", count="xxxxxx", lat="xxxxxx", lon="xxxxxx",radius="xxxxxx",
 cuisines="xxxxxx", establishment_type="xxxxxx", collection_id="xxxxxx",
 category="xxxxxx", sort="xxxxxx"L, order="xxxxxx")
 }

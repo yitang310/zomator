@@ -24,8 +24,8 @@
 #'
 #' @export
 #' @examples
-#' get_restaurant(api_key="xxxxxx", query="xxxxxx", entity_id="xxxxxx", entity_type="xxxxxx",
-#' q="xxxxxx", start="xxxxxx", count="xxxxxx", lat="xxxxxx", lon="xxxxxx",radius="xxxxxx",
+#' get_restaurant(api_key="xxxxxx", q="xxxxxx", entity_id="xxxxxx", entity_type="xxxxxx",
+#' start="xxxxxx", count="xxxxxx", lat="xxxxxx", lon="xxxxxx",radius="xxxxxx",
 #' cuisines="xxxxxx", establishment_type="xxxxxx", collection_id="xxxxxx",
 #' category="xxxxxx", sort="xxxxxx"L, order="xxxxxx")
 
@@ -33,8 +33,8 @@
 # Function of getting information about the restaurant
 
 get_search<- function(api_key=NULL,
-                      query = NULL, entity_id = NULL, entity_type = NULL,
-                      q = NULL, start = NULL, count = NULL, lat = NULL,
+                      q = NULL, entity_id = NULL, entity_type = NULL,
+                      start = NULL, count = NULL, lat = NULL,
                       lon = NULL,radius = NULL, cuisines = NULL,
                       establishment_type = NULL,collection_id = NULL,
                       category = NULL, sort = NULL, order = NULL) {
@@ -47,7 +47,7 @@ get_search<- function(api_key=NULL,
 
   URL <- 'https://developers.zomato.com'
   params <- list(
-    q = query, entity_id = entity_id, entity_type = entity_type, q = q,
+    q = q, entity_id = entity_id, entity_type = entity_type,
     start = start, count = count, lat = lat, lon = lon, radius = radius,
     cuisines = cuisines, establishment_type = establishment_type,
     category = category, collection_id = collection_id, sort = sort,

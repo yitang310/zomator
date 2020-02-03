@@ -35,7 +35,7 @@ get_dailymenu <- function(api_key=NULL, res_id=NULL) {
   }
 
   URL <- 'https://developers.zomato.com'
-  params <- list(res_id = res_id)
+  params <- list("res_id" = res_id)
 
   # Sending request
   resp <- httr::GET(

@@ -2,7 +2,7 @@
 context("Test functions part 3")
 
 #please replace xxxxxx with your own API key.
-key3 <- "388fd712b5816621ec4d4dfd6c71bbb2"
+key3 <- "528b6ee8d624e5e3e741f1fbd895b760"
 
 #test get_dailymenu
 test_that("test get_dailymenu",{
