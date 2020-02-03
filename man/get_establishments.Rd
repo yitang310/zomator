@@ -24,9 +24,9 @@ Get a list of restaurant types in a city. The
 location/City input can be provided in the following ways:
 1. Using Zomato City ID
 2. Using coordinates of any location within a city
-}
-\examples{
-get_establishments("528b6ee8d624e5e3e741f1fbd895b760",280)
+List of all restaurants categorized under a particular
+restaurant type can obtained using /Search API with
+Establishment ID and location details as inputs
 }
 \references{
 \url{https://developers.zomato.com/documentation#!/common/establishments}
