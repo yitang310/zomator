@@ -39,10 +39,7 @@ get_search(api_key = NULL, q = NULL, entity_id = NULL,
 Search for restaurants
 }
 \examples{
-get_restaurant(api_key="xxxxxx", q="xxxxxx", entity_id="xxxxxx", entity_type="xxxxxx",
-start="xxxxxx", count="xxxxxx", lat="xxxxxx", lon="xxxxxx",radius="xxxxxx",
-cuisines="xxxxxx", establishment_type="xxxxxx", collection_id="xxxxxx",
-category="xxxxxx", sort="xxxxxx"L, order="xxxxxx")
+get_search(api_key="00b8630a1745b3dda0d7ec926bba5c04", q="van")
 }
 \author{
 Chenxi Yang <chenxxiyang@gmail.com>

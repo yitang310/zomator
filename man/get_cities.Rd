@@ -34,7 +34,7 @@ state_code (string, optional) Short code for the state
 search for Zomato ID and other details for a city
 }
 \examples{
-get_cities(key="xxxxxx",q="xxx")
+get_cities(key="00b8630a1745b3dda0d7ec926bba5c04",q="van")
 }
 \author{
 Yi Tang <tangyi2014@gmail.com>

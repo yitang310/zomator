@@ -29,7 +29,7 @@
 #'
 #' @export
 #' @examples
-#' get_cities(key="xxxxxx",q="xxx")
+#' get_cities(key="00b8630a1745b3dda0d7ec926bba5c04",q="van")
 
 #function for finding the Zomato ID and other details for a city
 get_cities <- function(key=NULL,q=NULL,lat=NULL,lon=NULL,city_ids=NULL,count=NULL){
