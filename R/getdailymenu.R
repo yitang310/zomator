@@ -20,7 +20,7 @@
 #'
 #' @export
 #' @examples
-#' get_dailymenu(api_key="xxxxxx", res_id="xxxxxx")
+#' get_dailymenu(api_key="528b6ee8d624e5e3e741f1fbd895b760", res_id="16507624")
 
 # Function of getting daily menu of a restaurant
 

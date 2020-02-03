@@ -15,7 +15,7 @@ get_restaurant(api_key = NULL, res_id = NULL)
 Get restaurant details
 }
 \examples{
-get_restaurant(api_key="xxxxxx", res_id="xxxxxx")
+get_restaurant(api_key="528b6ee8d624e5e3e741f1fbd895b760", res_id="16774318")
 }
 \author{
 Chenxi Yang <chenxxiyang@gmail.com>

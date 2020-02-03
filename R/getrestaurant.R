@@ -14,7 +14,7 @@
 #'
 #' @export
 #' @examples
-#' get_restaurant(api_key="xxxxxx", res_id="xxxxxx")
+#' get_restaurant(api_key="528b6ee8d624e5e3e741f1fbd895b760", res_id="16774318")
 
 
 # Function of getting information about the restaurant

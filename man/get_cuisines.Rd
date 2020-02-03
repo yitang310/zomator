@@ -23,7 +23,7 @@ cuisine_name (string) Name of the cuisine
 search for all cuisines of restaurants listed in a city
 }
 \examples{
-get_cuisines(key="xxxxxx",city_id=000)
+get_cuisines(key="528b6ee8d624e5e3e741f1fbd895b760",city_id=256)
 }
 \author{
 Yi Tang <tangyi2014@gmail.com>

@@ -27,7 +27,7 @@
 #'
 #' @export
 #' @examples
-#' get_collections(key="xxxxxx",city_id=000)
+#' get_collections(key="00b8630a1745b3dda0d7ec926bba5c04",city_id=256)
 
 #function for finding Zomato Restaurant Collections in a City
 get_collections<-function(key=NULL,city_id=NULL,lat=NULL,lon=NULL,count=NULL){
