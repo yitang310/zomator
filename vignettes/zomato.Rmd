@@ -16,6 +16,8 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(zomator)
+
+key="528b6ee8d624e5e3e741f1fbd895b760"
 ```
 
 # Intro to the zomator package
@@ -25,19 +27,20 @@ A package that using API to access to [Zomato](https://developers.zomato.com/).
 
 You can install the stable version from CRAN
 
-```{r eval=FALSE}
-install.packages("rebird")
+```{r}
+install.packages("zomator")
 ```
 
 Or the development version from Github
-```{r eval=FALSE}
+
+```{r}
 install.packages("devtools")
 devtools::install_github("yitang310/zomator")
 ```
 
 Then load the package into the R sesssion.
 
-```{r eval=FALSE}
+```{r}
 library("zomator")
 ```
 
@@ -45,13 +48,20 @@ library("zomator")
 
 Inside `zomator`, there are 12 functions:
 
-get_categories, get_cities, get_collections, get_cuisines, get_establishments, get_geocode, get_location_details, get_locations, get_dailymenu, get_restaurant, get_reviews, get_search.
+get_categories, get_cities, get_collections, get_cuisines, get_establishments, get_geocode, 
+get_location_details, get_locations, get_dailymenu, get_restaurant, get_reviews, get_search.
 
-API requests to Zomato now require users to provide an API key, which can be obtained on [Zomato](https://developers.zomato.com/).
+API requests to Zomato now require users to provide an API key, which can be obtained on 
+[Zomato](https://developers.zomato.com/).
 
-You can pass it to the 'key' argument in `zomator` functions, but we highly recommend storing it as an environment variable called API_KEY in your file.
+You can pass it to the 'key' argument in `zomator` functions, but we highly recommend storing
+it as an environment variable called API_KEY in your file.
 
-You can keep your .Renviron file in your global R home directory (`R.home()`), your user's home directory (`Sys.getenv("HOME")`), or your current working directory (`getwd()`). Remember that .Renviron is loaded once when you start R, so if you add your API key to the file you will have to restart your R session. See <https://csgillespie.github.io/efficientR/r-startup.html> for more information on R's startup files.
+You can keep your .Renviron file in your global R home directory (`R.home()`), your user's home
+directory (`Sys.getenv("HOME")`), or your current working directory (`getwd()`). Remember that
+Renviron is loaded once when you start R, so if you add your API key to the file you will have 
+to restart your R session. See <https://csgillespie.github.io/efficientR/r-startup.html> for more
+information on R's startup files.
 
 
 ## Work Distribution
@@ -99,7 +109,7 @@ testpart2: Li (author)
 testpart3: Yang (author)
 
 
-```{r eval=FALSE}
+```{r}
 library(zomator)
 ```
 
@@ -108,7 +118,7 @@ library(zomator)
 
 # please replace "key" with your API key 
 
-```{r eval=FALSE}
+```{r}
 get_categories(key=key)
 ```
 
@@ -130,7 +140,7 @@ get_categories(key=key)
 
 ```
 
-```{r eval=FALSE}
+```{r}
 get_cities(key=key,q="van")
 ```
 
@@ -185,7 +195,7 @@ get_cities(key=key,q="van")
 
 ```
 
-```{r eval=FALSE}
+```{r}
 get_collections(key=key,city_id=256)
 ```
 
@@ -390,7 +400,7 @@ get_collections(key=key,city_id=256)
 
 ```
 
-```{r eval=FALSE}
+```{r}
 get_cuisines(key=key,city_id=256)
 ```
 
@@ -523,7 +533,7 @@ get_cuisines(key=key,city_id=256)
 125                851             Xinjiang
 ```
 
-```{r eval=FALSE}
+```{r}
 get_establishments(key =key,city_id = 256)
 ```
 
@@ -561,11 +571,11 @@ get_establishments(key =key,city_id = 256)
 30              290           Vineyard
 
 ```
-```{r eval=FALSE}
+```{r}
 get_geocode(key=key,1.2,2.3)
 ```
 
-```{r eval=FALSE}
+```{r}
 data_geocode <- get_geocode(key=key,1.2,2.3)
 plot(data_geocode$restaurant.location.latitude,data_geocode$restaurant.location.longitude,main="The Locations of 10 Restaurants in Alamo Heights San Antonio")
 ```
@@ -830,11 +840,11 @@ plot(data_geocode$restaurant.location.latitude,data_geocode$restaurant.location.
 
 ```
 
-```{r eval=FALSE}
+```{r}
 get_location_details(key=key,1,"city")
 ```
 
-```{r eval=FALSE}
+```{r}
 data_location_details<-get_location_details(key=key,256,"city")
 barplot(data_location_details$all_reviews_count,names.arg=data_location_details$name,las=2,cex.names = 0.5,cex.lab = 0.65, main = "Reviews Count for 10 Restaurants in Metro Vancouver British Columbia",cex.main=0.9)
 barplot(data_location_details$photo_count,names.arg=data_location_details$name,las=2,cex.names = 0.5,cex.lab = 0.65, main = "Photo Count of 10 Restaurants in Metro Vancouver British Columbia",cex.main=0.9)
@@ -1022,7 +1032,7 @@ barplot(data_location_details$photo_count,names.arg=data_location_details$name,l
 
 ```
 
-```{r eval=FALSE}
+```{r}
 get_locations(key=key,query="van",count=1)
 ```
 
@@ -1031,7 +1041,7 @@ get_locations(key=key,query="van",count=1)
          city          9560   Van Alstyne, Texas    33.42251    -96.57942       9560    Van Alstyne           216    United States
 ```
 
-```{r eval=FALSE}
+```{r}
 get_dailymenu(key=key, res_id="16507624")
 ```
 
@@ -1052,7 +1062,7 @@ get_dailymenu(key=key, res_id="16507624")
 
 ```
 
-```{r eval=FALSE}
+```{r}
 get_restaurant(key=key, res_id="16774318")
 ```
 
