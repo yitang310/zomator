@@ -28,3 +28,48 @@ Inside `zomator`, there are 12 functions:
 | | get_restaurant | Get restaurant details | *key, res_id* | get_restaurant('key', res_id="16774318") |
 | | get_reviews | Get restaurant reviews | *key, res_id* | get_reviews('key', res_id="16774318") |
 | | get_search | Search for restaurants | *key, q, entity_id, entity_type, start, count, lat, lon, radius, cuisines, establishment_type, collection_id, category, sort, order* | get_search('key', q="van") |
+
+### Work Distribution
+
+**Readme:** Yang (editor)
+
+**Description:** Tang (editor)
+
+**Vignettes:** Yang (main editor), Tang (editor), Li (editor)
+
+
+
+**R functions:**
+
+- get_categories: Tang (author)
+
+- get_cities: Tang (author)
+
+- get_collections: Tang (author)
+
+- get_cuisines: Tang (author)
+
+- get_establishments: Li (author), Tang (editor)
+
+- get_geocode: Li (author), Tang (editor)
+
+- get_location_details: Li (author), Yang (editor)
+
+- get_locations: Li (author), Tang (editor)
+
+- get_dailymenu: Yang (author) 
+
+- get_restaurant: Yang (author)
+
+- get_reviews: Yang (author)
+
+- get_search: Yang (author)
+
+
+**Tests:**
+
+testpart1: Tang (author)
+
+testpart2: Li (author)
+
+testpart3: Yang (author)
