@@ -2,15 +2,36 @@
 title: "zomator"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{zomato}
+  %\VignetteIndexEntry{zomator}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(zomator)
+
+key="528b6ee8d624e5e3e741f1fbd895b760"
+```
 
 # Intro to the zomator package
 A package that using API to access to [Zomato](https://developers.zomato.com/).
 
 ## Installation
+
+You can install the stable version from CRAN
+
+```{r}
+install.packages("zomator")
+```
+
+Or the development version from Github
 
 ```{r}
 install.packages("devtools")
@@ -19,35 +40,40 @@ devtools::install_github("yitang310/zomator")
 
 Then load the package into the R sesssion.
 
+```{r}
+library("zomator")
+```
+
 ## Usage
 
 Inside `zomator`, there are 12 functions:
 
-| Category |  Function Name  | Description  | Parameters | Example |
-|  ----  | ----  | ---- | ---- | ---- |
-| Common | get_categories | Get list of Categories | *key* | get_categories('key') |
-| | get_cities  | Get city details | *key, q, lat, lon, city_ids, count* | get_cities('key', q='van') |
-| | get_collections | Get Zomato collections in a city | *key, city_id, lat, lon, count* | get_collections('key', city_id=256) |
-| | get_cuisines | Get list of all cuisines in a city | *key, city_id, lat, lon* | get_cuisines('key', city_id=256)
-| | get_establishments | Get list of restaurant types in a city | *key, city_id, lat, lon* | get_establishments(key, city_id = 280) |
-| | get_geocode | Get location details based on coordinates | *key, lat, lon* | get_geocode(key, 1.2, 2.3) |
-| Location | get_location_details | Get Zomato location details | *key, entity_id, entity_type* | get_location_details(key, 1, "city") |
-| | get_locations | Search for locations | *key, query, lat, lon, count* | get_locations(key, "van") |
-| Restaurant | get_dailymenu | Get daily menu of a restaurant |  *key, res_id* | get_restaurant('key', res_id="16774318") |
-| | get_restaurant | Get restaurant details | *key, res_id* | get_restaurant('key', res_id="16774318") |
-| | get_reviews | Get restaurant reviews | *key, res_id* | get_reviews('key', res_id="16774318") |
-| | get_search | Search for restaurants | *key, q, entity_id, entity_type, start, count, lat, lon, radius, cuisines, establishment_type, collection_id, category, sort, order* | get_search('key', q="van") |
+get_categories, get_cities, get_collections, get_cuisines, get_establishments, get_geocode, 
+get_location_details, get_locations, get_dailymenu, get_restaurant, get_reviews, get_search.
+
+API requests to Zomato now require users to provide an API key, which can be obtained on 
+[Zomato](https://developers.zomato.com/).
+
+You can pass it to the 'key' argument in `zomator` functions, but we highly recommend storing
+it as an environment variable called API_KEY in your file.
+
+You can keep your .Renviron file in your global R home directory (`R.home()`), your user's home
+directory (`Sys.getenv("HOME")`), or your current working directory (`getwd()`). Remember that
+Renviron is loaded once when you start R, so if you add your API key to the file you will have 
+to restart your R session. See <https://csgillespie.github.io/efficientR/r-startup.html> for more
+information on R's startup files.
+
 
 ## Work Distribution
 
-**Readme:** Yang (editor)
+Readme: Yang (editor)
 
-**Description:** Tang (editor)
+Description: Tang (editor)
 
-**Vignettes:** Yang (main editor), Tang (editor), Li (editor)
+Vignettes: Yang (main editor), Tang (editor), Li (editor)
 
 
-**R functions:**
+R functions:
 
 - get_categories: Tang (author)
 
@@ -74,7 +100,7 @@ Inside `zomator`, there are 12 functions:
 - get_search: Yang (author)
 
 
-**Tests:**
+Tests:
 
 testpart1: Tang (author)
 
@@ -83,12 +109,12 @@ testpart2: Li (author)
 testpart3: Yang (author)
 
 
-```{r setup}
+```{r}
 library(zomator)
 ```
 
 * requirement  
- go to [Zomato Web Site](https://developers.zomato.com/api#headline1) request An API Key
+ Go to [Zomato Web Site](https://developers.zomato.com/api#headline1) request An API Key
 
 # please replace "key" with your API key 
 
@@ -644,13 +670,13 @@ plot(data_geocode$restaurant.location.latitude,data_geocode$restaurant.location.
                                                                                                                                                                                       
                                                                                                                                                                                                                                                                                                                             restaurant.menu_url
 2 https://www.zomato.com/san-antonio/florios-pizza-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
-3        https://www.zomato.com/san-antonio/soluna-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
-4   https://www.zomato.com/san-antonio/stone-werks-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
+3 https://www.zomato.com/san-antonio/soluna-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
+4 https://www.zomato.com/san-antonio/stone-werks-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
 5 https://www.zomato.com/san-antonio/twin-sisters-bakery-and-cafe-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
 6 https://www.zomato.com/san-antonio/sushi-zushi-lincoln-heights-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
 7 https://www.zomato.com/san-antonio/torchys-tacos-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
-8    https://www.zomato.com/san-antonio/fredericks-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
-9       https://www.zomato.com/san-antonio/orderup-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
+8 https://www.zomato.com/san-antonio/fredericks-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
+9 https://www.zomato.com/san-antonio/orderup-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
                                                                          
                                                                          restaurant.featured_image
 2                                                                                                 
@@ -823,6 +849,7 @@ data_location_details<-get_location_details(key=key,256,"city")
 barplot(data_location_details$all_reviews_count,names.arg=data_location_details$name,las=2,cex.names = 0.5,cex.lab = 0.65, main = "Reviews Count for 10 Restaurants in Metro Vancouver British Columbia",cex.main=0.9)
 barplot(data_location_details$photo_count,names.arg=data_location_details$name,las=2,cex.names = 0.5,cex.lab = 0.65, main = "Photo Count of 10 Restaurants in Metro Vancouver British Columbia",cex.main=0.9)
 ```
+
 ```
          id                 name switch_to_order_menu
 1  19012596         One8 Commune                    0
@@ -859,7 +886,7 @@ barplot(data_location_details$photo_count,names.arg=data_location_details$name,l
 8                           10 AM to 11 PM                  500           2      Rs.
 9  12 Noon to 3:30 PM, 6:30 PM to 11:30 PM                 1600           3      Rs.
 10    12 Noon to 2:30 PM, 7 PM to 10:30 PM                 5000           4      Rs.
-                                                                                                                                                                                                                                                                                                                                    highlights
+                                                                                                                                                                          highlights
 1 Dinner, Cash, Credit Card, Lunch, Takeaway Available, Debit Card, Valet Parking Available, Indoor Seating, Table booking recommended, Sneakpeek, Fullbar, Free Wifi, Air Conditioned
 2 Dinner, Cash, Debit Card, Lunch, Credit Card, Outdoor Seating, Table booking recommended
 3 Lunch, Takeaway Available, Debit Card, Dinner, Cash, Credit Card, Outdoor Seating, Air Conditioned, Indoor Seating
@@ -1004,6 +1031,7 @@ barplot(data_location_details$photo_count,names.arg=data_location_details$name,l
 10                      800                NULL
 
 ```
+
 ```{r}
 get_locations(key=key,query="van",count=1)
 ```
@@ -1025,7 +1053,7 @@ get_dailymenu(key=key, res_id="16507624")
 4                 17178064   2020-02-04 00:00:00                  Saláty
 5                 17191110   2020-02-04 00:00:00                  Dezert
                                                                                  
-                                                                                                                                                      daily_menu.dishes
+  daily_menu.dishes
 1 634207002, Bramboračka s hříbky, 45 Kč
 2 634206981, 634206982, 634206983, 634206984, 634206985, 634206986, 634206987, 634206988, 634206989, 634206990, Kachní paštika s brusinkami, mandlemi a cibulovou marmeládou, Studený roastbeef s hořčičnou omáčkou a okurkou, Rillettes z vepřového masa s hořčičnou omáčkou, Nakládaný hermelín, Nakládané olomoucké tvarůžky  , Domácí škvarková pomazánka s cibulkou, Tlačenka s cibulkou a octem, Jehněčí klobásky s hořčičným dipem a malým zelným salátem, Špekáčky na černém pivu, Slané pražené mandle (80 g), 89 Kč, 99 Kč, 85 Kč, 85 Kč, 79 Kč, 65 Kč, 59 Kč, 89 Kč, 89 Kč, 79 Kč
 3 634206991, 634206992, 634206993, 634206994, 634206995, 634206996, 634206997, 634206998, Dančí svíčková s karlovarským knedlíkem a brusinkami, Grilovaný flapsteak s gratinovanými bramborami a zelenými fazolkami, omáčka z pečeného česneku, Marinovaná pečená vepřová žebra s česnekovou majonézou, Medailonky z vepřové panenky s pečenou paprikou, brambory Grenaille a omáčka s rozmarýnem, Rolované farmářské kuře marinované v brandy, smetanová br. kaše s list. špenátem, Bůček na černém pivu s červeným zelím a bramborovými špalíky, Smažený řízek z přeštického prasátka s lehkým bramborovým salátem, Naše bramborové špalíky se smetanovým listovým špenátem, 239 Kč, 249 Kč, 196 Kč, 229 Kč, 165 Kč, 149 Kč, 185 Kč, 99 Kč
@@ -1033,9 +1061,11 @@ get_dailymenu(key=key, res_id="16507624")
 5 631103520, 631103521, Čokoládová pěna s višněmi marinovanými v griotce, Šlehaná zakysaná smetana s medem a čerstvým ovocem, máta, 55 Kč, 55 Kč
 
 ```
+
 ```{r}
 get_restaurant(key=key, res_id="16774318")
 ```
+
 ```
   R.has_menu_status.delivery        R.has_menu_status.takeaway            R.res_id
                           -1                                -1            16774318
@@ -1056,11 +1086,11 @@ get_restaurant(key=key, res_id="16774318")
                                                                                  timings
   12 Noon to 11 PM (Mon-Thu), 11:30 AM to 12 Midnight (Fri-Sat), 11:30 AM to 11 PM (Sun)
   
-  average_cost_for_two price_range currency    highlights1 highlights2 highlights3
-                    40           3        $ Serves Alcohol    Delivery       Lunch
+  average_cost_for_two    price_range     currency        highlights1     highlights2     highlights3
+                    40              3            $     Serves Alcohol        Delivery           Lunch
   
-  highlights4        highlights5    highlights6         highlights7    highlights8
-       Dinner Takeaway Available    Credit Card Vegetarian Friendly        Fullbar
+  highlights4          highlights5    highlights6           highlights7    highlights8
+       Dinner   Takeaway Available    Credit Card   Vegetarian Friendly        Fullbar
                 
                 highlights9      highlights10   opentable_support   is_zomato_book_res
   Table booking recommended    Indoor Seating                   0                    0
@@ -1124,7 +1154,7 @@ get_restaurant(key=key, res_id="16774318")
   
 ```
 
-```{r}
+```{r eval=FALSE}
 get_reviews(key=key, res_id="16774318")
 ```
 
@@ -1224,17 +1254,19 @@ get_search(key=key, q="van")
   restaurant.photo_count
                        8
  
- restaurant.photos
-  u_0NDEyMDkwODMwM 
-  u_2MDkzNjI1MTE5M
-  u_g4NTk3MjY5NTk2
-  u_I3MDY2Mzg4ODY4
-  u_YzMDM2NzgyMTY5
-  u_MjQzMDQ3NTI3NT
-  u_zkzNTIxNTMzMTE
-  u_E4NDI3MjAwMzgx
+       restaurant.photos
+        u_0NDEyMDkwODMwM 
+        u_2MDkzNjI1MTE5M
+        u_g4NTk3MjY5NTk2
+        u_I3MDY2Mzg4ODY4
+        u_YzMDM2NzgyMTY5
+        u_MjQzMDQ3NTI3NT
+        u_zkzNTIxNTMzMTE
+        u_E4NDI3MjAwMzgx
   
-https://b.zmtcdn.com/data/reviews_photos/368/ee267e41f36eccf81c96e8efe1480368_1497902196.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A    https://b.zmtcdn.com/data/reviews_photos/457/584003825d5b4725f62f8bdd1150a457_1505608477.jpg, https://b.zmtcdn.com/data/reviews_photos/35f/8b92a7d46625a31375dad3a6daf4935f_1497902214.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A, https://b.zmtcdn.com/data/reviews_photos/e3d/a14c30ae979f01acea842e97fbfd0e3d_1497902240.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A, https://b.zmtcdn.com/data/reviews_photos/c97/f15450b2072a768c4f9c6345e0522c97_1497902223.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A,     https://b.zmtcdn.com/data/reviews_photos/9dd/3800cc7629d6709ffa2e72fcdf1289dd_1497902190.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A, https://b.zmtcdn.com/data/reviews_photos/50a/99e5d39187d209bd3cf9e4239158a50a_1497902253.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A, https://b.zmtcdn.com/data/reviews_photos/f0e/1a8a37f6e3185ca9694bca9c86e12f0e_1497902231.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A, https://b.zmtcdn.com/data/reviews_photos/368/ee267e41f36eccf81c96e8efe1480368_1497902196.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=58&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/457/584003825d5b4725f62f8bdd1150a457_1505608477.jpg?impolicy=newcropandfit&cropw=2448&croph=2448&cropoffsetx=0&cropoffsety=508&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/35f/8b92a7d46625a31375dad3a6daf4935f_1497902214.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=190&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/e3d/a14c30ae979f01acea842e97fbfd0e3d_1497902240.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=244&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/c97/f15450b2072a768c4f9c6345e0522c97_1497902223.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=280&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/9dd/3800cc7629d6709ffa2e72fcdf1289dd_1497902190.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=269&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/50a/99e5d39187d209bd3cf9e4239158a50a_1497902253.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=335&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/f0e/1a8a37f6e3185ca9694bca9c86e12f0e_1497902231.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=273&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, 
+https://b.zmtcdn.com/data/reviews_photos/368/ee267e41f36eccf81c96e8efe1480368_1497902196.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A    https://b.zmtcdn.com/data/reviews_photos/457/584003825d5b4725f62f8bdd1150a457_1505608477.jpg, https://b.zmtcdn.com/data/reviews_photos/35f/8b92a7d46625a31375dad3a6daf4935f_1497902214.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A, https://b.zmtcdn.com/data/reviews_photos/e3d/a14c30ae979f01acea842e97fbfd0e3d_1497902240.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A, https://b.zmtcdn.com/data/reviews_photos/c97/f15450b2072a768c4f9c6345e0522c97_1497902223.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A,     https://b.zmtcdn.com/data/reviews_photos/9dd/3800cc7629d6709ffa2e72fcdf1289dd_1497902190.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A, https://b.zmtcdn.com/data/reviews_photos/50a/99e5d39187d209bd3cf9e4239158a50a_1497902253.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A, https://b.zmtcdn.com/data/reviews_photos/f0e/1a8a37f6e3185ca9694bca9c86e12f0e_1497902231.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A,
+
+https://b.zmtcdn.com/data/reviews_photos/368/ee267e41f36eccf81c96e8efe1480368_1497902196.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=58&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/457/584003825d5b4725f62f8bdd1150a457_1505608477.jpg?impolicy=newcropandfit&cropw=2448&croph=2448&cropoffsetx=0&cropoffsety=508&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/35f/8b92a7d46625a31375dad3a6daf4935f_1497902214.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=190&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/e3d/a14c30ae979f01acea842e97fbfd0e3d_1497902240.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=244&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/c97/f15450b2072a768c4f9c6345e0522c97_1497902223.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=280&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/9dd/3800cc7629d6709ffa2e72fcdf1289dd_1497902190.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=269&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/50a/99e5d39187d209bd3cf9e4239158a50a_1497902253.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=335&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/f0e/1a8a37f6e3185ca9694bca9c86e12f0e_1497902231.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=273&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, 
   
   16647276     1497902288     Jun 20, 2017      640      640
   16647276     1505608478     Sep 17, 2017     2448     3264
@@ -1254,131 +1286,60 @@ https://b.zmtcdn.com/data/reviews_photos/368/ee267e41f36eccf81c96e8efe1480368_14
   Prince Gastronome   Super Foodie  11   f58552
   Prince Gastronome   Super Foodie  11   f58552
 
-https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1,   https://www.zomato.com/users/kmcclurg-30161476?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, https://b.zmtcdn.com/images/user_avatars/mug_2x.png?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A, https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, 
+https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1,   https://www.zomato.com/users/kmcclurg-30161476?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, 
 
-zomato://u/22649291, 
-zomato://u/30161476, 
-zomato://u/22649291, 
-zomato://u/22649291, 
-zomato://u/22649291, 
-zomato://u/22649291, 
-zomato://u/22649291, 
-zomato://u/22649291, 
+https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, https://b.zmtcdn.com/images/user_avatars/mug_2x.png?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A, https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, 
 
-NA, 
-NA, 
-NA, 
-NA, 
-NA, 
-  , 
-NA, 
-NA
+zomato://u/22649291,  NA,
+zomato://u/30161476,  NA, 
+zomato://u/22649291,  NA, 
+zomato://u/22649291,  NA,
+zomato://u/22649291,  NA,
+zomato://u/22649291,    ,
+zomato://u/22649291,  NA,
+zomato://u/22649291,  NA,
   
-  restaurant.menu_url
+                                                                                                                                                   restaurant.menu_url
   https://www.zomato.com/penticton-bc/the-vanilla-pod-penticton/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
   
-  restaurant.featured_image
-  https://b.zmtcdn.com/data/reviews_photos/368/ee267e41f36eccf81c96e8efe1480368_1497902196.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A
+                                                                                                                                             restaurant.featured_image
+                        https://b.zmtcdn.com/data/reviews_photos/368/ee267e41f36eccf81c96e8efe1480368_1497902196.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A
   
-  restaurant.has_online_delivery
-                               0
-  
-    restaurant.is_delivering_now
-                               0                          
-  
-  restaurant.include_bogo_offers
-                            TRUE
-  
-            restaurant.deeplink 
-   zomato://restaurant/16647276
+  restaurant.has_online_delivery    restaurant.is_delivering_now    restaurant.include_bogo_offers              restaurant.deeplink
+                               0                               0                              TRUE     zomato://restaurant/16647276
 
-restaurant.is_table_reservation_supported
-                                        0
+  restaurant.is_table_reservation_supported   restaurant.has_table_booking
+                                          0                              0
   
-   restaurant.has_table_booking
-                              0
-  
-  restaurant.events_url
+                                                                                                                   restaurant.events_url
   https://www.zomato.com/penticton-bc/the-vanilla-pod-penticton/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
   
-  restaurant.phone_numbers 
-         +1 (250) 493-9463            
+  restaurant.phone_numbers   restaurant.establishment   restaurant.establishment_types    restaurant.R.res_id
+         +1 (250) 493-9463                       NULL                             NULL               16647276 
   
-  restaurant.establishment
-                      NULL
+  restaurant.R.has_menu_status.delivery    restaurant.R.has_menu_status.takeaway
+                                     -1                                       -1
   
-  restaurant.establishment_types
-                            NULL
+            restaurant.location.address      restaurant.location.locality      restaurant.location.city
+  425 Middle Bench Rd, Penticton V2A8S5                         Penticton                   Penticton
   
-  restaurant.R.res_id 
-            16647276          
+             restaurant.location.city_id     restaurant.location.latitude  restaurant.location.longitude
+                                    2996                    49.5133854000                -119.5714503000
   
-  restaurant.R.has_menu_status.delivery
-                                     -1
+             restaurant.location.zipcode   restaurant.location.country_id  
+                                  V2A8S5                               37
   
-  restaurant.R.has_menu_status.takeaway
-                                     -1 
+    restaurant.location.locality_verbose   restaurant.user_rating.aggregate_rating 
+                    Penticton, Penticton                                       3.5 
   
-            restaurant.location.address
-  425 Middle Bench Rd, Penticton V2A8S5
-  
-            restaurant.location.locality  
-                               Penticton    
-  
-                restaurant.location.city
-                               Penticton
-  
-             restaurant.location.city_id
-                                    2996
-  
-            restaurant.location.latitude 
-                           49.5133854000               
-  
-           restaurant.location.longitude
-                         -119.5714503000   
-  
-             restaurant.location.zipcode
-                                  V2A8S5
-  
-          restaurant.location.country_id 
-                                      37        
-  
-    restaurant.location.locality_verbose
-                    Penticton, Penticton
-  
- restaurant.user_rating.aggregate_rating 
-                                     3.5                            
-  
-      restaurant.user_rating.rating_text
-                                    Good
+      restaurant.user_rating.rating_text   restaurant.user_rating.rating_color 
+                                    Good                                9ACD32
  
-     restaurant.user_rating.rating_color 
-                                  9ACD32 
+            restaurant.user_rating.votes   restaurant.user_rating.rating_obj.title.text
+                                      30                                            3.5
   
-            restaurant.user_rating.votes
-                                      30
-  
-     restaurant.user_rating.rating_obj.title.text
-                                              3.5
- 
-  restaurant.user_rating.rating_obj.bg_color.type
-                                             lime
-  
-  restaurant.user_rating.rating_obj.bg_color.tint
-                                          
-  
-          restaurant.all_reviews.reviews
-                                    NULL
-                                    
+
+  restaurant.user_rating.rating_obj.bg_color.type   restaurant.user_rating.rating_obj.bg_color.tint   restaurant.all_reviews.reviews
+                                             lime                                                                               NULL
+                                             
 ```
-
-
-
-
-
-
-
-
-
-
-
