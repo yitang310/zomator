@@ -68,5 +68,5 @@ get_location_details<-function(key=NULL,entity_id = NULL,entity_type = NULL){
   b <- lodata$best_rated_restaurant[!grepl(c, a)]
   names(b) <- gsub("restaurant.|location.|user_rating.", "", names(b))
 
-  return(b)
+  return(b[,-17])
 }

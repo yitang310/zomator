@@ -32,7 +32,7 @@ test_that("getlocation_details", {
   expect_error(get_location_details("528b6ee8d624e5e3e741f1fbd895b760"))
   expect_error(get_location_details("528b6ee8d624e5e3e741f1fbd895b760",entity_id=1))
   expect_error(get_location_details("528b6ee8d624e5e3e741f1fbd895b760",entity_type="city"))
-  expect_length(get_location_details("528b6ee8d624e5e3e741f1fbd895b760",1,"city"),44)
+  expect_length(get_location_details("528b6ee8d624e5e3e741f1fbd895b760",1,"city"),43)
   expect_error(get_location_details("528b6ee8d624e5e3e741f1fbd895b760",1,"balabala"))
 })
 
