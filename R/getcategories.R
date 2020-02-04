@@ -5,7 +5,7 @@
 #' return the list of category types
 #'
 #' Enter parameter values
-#' @param user-key your API key
+#' @param key your API key
 #'
 #' @return
 #' category_id (integer) ID of the category type

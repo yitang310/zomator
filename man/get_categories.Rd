@@ -7,7 +7,7 @@
 get_categories(key = NULL)
 }
 \arguments{
-\item{user-key}{your API key}
+\item{key}{your API key}
 }
 \value{
 category_id (integer) ID of the category type
