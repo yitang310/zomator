@@ -1,0 +1,21 @@
+Package: zomator
+Type: Package
+Title: Wrapper to the Zomato API.
+Version: 0.1.2
+Authors@R: c(person("Yi", "Tang", email = "tangyi2014@gmail.com",role = c("aut", "cre")),
+    person("Chenxi", "Yang", email = "chenxxiyang@gmail.com",role = "aut"),
+    person("Huazi", "Li", email = "632473742@qq.com",role = "aut"))
+Description: This is an R wrapper for pulling data from the Zomato API.
+    <https://developers.zomato.com/>
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+    httr,
+    jsonlite
+RoxygenNote: 6.1.2
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: rmarkdown
