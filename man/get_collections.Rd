@@ -8,6 +8,8 @@ get_collections(key = NULL, city_id = NULL, lat = NULL, lon = NULL,
   count = NULL)
 }
 \arguments{
+\item{key}{your API key}
+
 \item{city_id}{id of the city for which collections are needed}
 
 \item{lat}{latitude}
@@ -15,8 +17,6 @@ get_collections(key = NULL, city_id = NULL, lat = NULL, lon = NULL,
 \item{lon}{longitude}
 
 \item{count}{number of max results to display}
-
-\item{user-key}{your API key}
 }
 \value{
 collection_id (integer, optional) ID of the collection of restaurants

@@ -4,10 +4,10 @@
 \alias{get_reviews}
 \title{Get restaurant reviews}
 \usage{
-get_reviews(api_key = NULL, res_id = NULL)
+get_reviews(key = NULL, res_id = NULL)
 }
 \arguments{
-\item{api_key}{your API key}
+\item{key}{your API key}
 
 \item{res_id}{id of restaurant whose details are requested}
 }
@@ -34,7 +34,7 @@ user.zomato_handle (character) zomato_handle about the user
 Get restaurant reviews
 }
 \examples{
-get_reviews(api_key="528b6ee8d624e5e3e741f1fbd895b760", res_id="16774318")
+get_reviews(key="528b6ee8d624e5e3e741f1fbd895b760", res_id="16774318")
 }
 \author{
 Chenxi Yang <chenxxiyang@gmail.com>

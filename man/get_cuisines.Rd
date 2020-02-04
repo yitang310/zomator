@@ -7,13 +7,13 @@
 get_cuisines(key = NULL, city_id = NULL, lat = NULL, lon = NULL)
 }
 \arguments{
+\item{key}{your API key}
+
 \item{city_id}{id of the city for which collections are needed}
 
 \item{lat}{latitude}
 
 \item{lon}{longitude}
-
-\item{user-key}{your API key}
 }
 \value{
 cuisine_id (integer) ID of the cuisine

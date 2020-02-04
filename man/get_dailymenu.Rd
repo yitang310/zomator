@@ -4,12 +4,12 @@
 \alias{get_dailymenu}
 \title{Get daily menu of a restaurant}
 \usage{
-get_dailymenu(api_key = NULL, res_id = NULL)
+get_dailymenu(key = NULL, res_id = NULL)
 }
 \arguments{
-\item{res_id}{id of restaurant whose details are requested}
+\item{key}{your API key}
 
-\item{user-key}{your API key}
+\item{res_id}{id of restaurant whose details are requested}
 }
 \value{
 daily_menu_id (character) ID of the daily menu
@@ -21,7 +21,7 @@ dishes (data frame) dishes on the daily menu
 Get daily menu of a restaurant
 }
 \examples{
-get_dailymenu(api_key="528b6ee8d624e5e3e741f1fbd895b760", res_id="16507624")
+get_dailymenu(key="528b6ee8d624e5e3e741f1fbd895b760", res_id="16507624")
 }
 \author{
 Chenxi Yang <chenxxiyang@gmail.com>

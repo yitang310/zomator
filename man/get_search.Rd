@@ -4,16 +4,24 @@
 \alias{get_search}
 \title{Search for restaurants}
 \usage{
-get_search(api_key = NULL, q = NULL, entity_id = NULL,
+get_search(key = NULL, q = NULL, entity_id = NULL,
   entity_type = NULL, start = NULL, count = NULL, lat = NULL,
   lon = NULL, radius = NULL, cuisines = NULL,
   establishment_type = NULL, collection_id = NULL, category = NULL,
   sort = NULL, order = NULL)
 }
 \arguments{
+\item{key}{your API key}
+
+\item{q}{search keyword}
+
 \item{entity_id}{location id}
 
 \item{entity_type}{location type city/subzone/zone/landmark/metro/group}
+
+\item{start}{fetch results after offset}
+
+\item{count}{max number of results to display}
 
 \item{lat}{latitude}
 
@@ -27,19 +35,17 @@ get_search(api_key = NULL, q = NULL, entity_id = NULL,
 
 \item{collection_id}{collection id obtained from collections call}
 
-\item{sort}{sort restaurants by cost/rating/real_distance}
+\item{category}{category ids obtained from categories call}
+
+\item{sort}{sort restaurants by cost/rating/real_distance,choosing from cost,rating and real_distance}
 
 \item{order}{used with 'sort' parameter to define ascending/descending}
-
-\item{user-key}{your API key}
-
-\item{query}{search keyword}
 }
 \description{
 Search for restaurants
 }
 \examples{
-get_search(api_key="00b8630a1745b3dda0d7ec926bba5c04", q="van")
+get_search(key="00b8630a1745b3dda0d7ec926bba5c04", q="van")
 }
 \author{
 Chenxi Yang <chenxxiyang@gmail.com>
