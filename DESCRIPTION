@@ -10,12 +10,13 @@ Description: This is an R wrapper for pulling data from the Zomato API.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Imports:
-    httr,
-    jsonlite
+Imports: httr, jsonlite
 RoxygenNote: 6.1.1
-Suggests:
-    knitr,
-    rmarkdown,
-    testthat
+Suggests: knitr, rmarkdown, testthat
 VignetteBuilder: knitr
+NeedsCompilation: no
+Packaged: 2020-02-04 20:03:07 UTC; ty
+Author: Yi Tang [aut, cre],
+  Chenxi Yang [aut],
+  Huazi Li [aut]
+Maintainer: Yi Tang <tangyi2014@gmail.com>

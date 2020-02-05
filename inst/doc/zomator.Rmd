@@ -574,7 +574,7 @@ get_geocode(key=key,1.2,2.3)
 
 ```{r}
 data_geocode <- get_geocode(key=key,1.2,2.3)
-plot(data_geocode$restaurant.location.latitude,data_geocode$restaurant.location.longitude,main="The Locations of 10 Restaurants in Alamo Heights San Antonio",cex.main=0.9,cex.lab=0.9)
+plot(data_geocode$restaurant.location.latitude,data_geocode$restaurant.location.longitude,main="The Locations of 10 Restaurants in Alamo Heights San Antonio")
 ```
 ```
                  restaurant.apikey restaurant.id               restaurant.name
