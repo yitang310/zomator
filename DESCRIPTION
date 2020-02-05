@@ -1,7 +1,7 @@
 Package: zomator
 Type: Package
 Title: Wrapper to the Zomato API
-Version: 0.1.3
+Version: 0.1.4
 Authors@R: c(person("Yi", "Tang", email = "tangyi2014@gmail.com",role = c("aut", "cre")),
     person("Chenxi", "Yang", email = "chenxxiyang@gmail.com",role = "aut"),
     person("Huazi", "Li", email = "632473742@qq.com",role = "aut"))
