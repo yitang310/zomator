@@ -1,11 +1,9 @@
 ---
 title: "zomator"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{zomator}
-  %\VignetteEngine{rmarkdown::render}
-  %\VignetteEncoding{UTF-8}
+vignette: |
+  %\VignetteIndexEntry{zomator} %\VignetteEngine{knitr::knitr} %\VignetteEncoding{UTF-8}
 ---
+
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -15,25 +13,26 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(zomator)
+#library(zomator)
 
 key="528b6ee8d624e5e3e741f1fbd895b760"
 ```
 
 # Intro to the zomator package
+
 A package that using API to access to [Zomato](https://developers.zomato.com/).
 
 ## Installation
 
-You can install the stable version from CRAN
+You can install the stable version from CRAN, when available
 
-```{r}
+```{r install, eval=FALSE}
 install.packages("zomator")
 ```
 
 Or the development version from Github
 
-```{r}
+```{r installgithub, eval=FALSE}
 install.packages("devtools")
 devtools::install_github("yitang310/zomator")
 ```
@@ -109,11 +108,7 @@ testpart2: Li (author)
 testpart3: Yang (author)
 
 
-```{r}
-library(zomator)
-```
-
-* requirement  
+# requirement  
  Go to [Zomato Web Site](https://developers.zomato.com/api#headline1) request An API Key
 
 # please replace "key" with your API key 

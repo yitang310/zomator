@@ -15,8 +15,6 @@ category_name (string) Name of the category type
 }
 \description{
 return the list of category types
-
-Enter parameter values
 }
 \examples{
 get_categories("00b8630a1745b3dda0d7ec926bba5c04")
