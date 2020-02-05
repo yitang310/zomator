@@ -10,6 +10,7 @@ Yi Tang, Chenxi Yang, Huazi Li
 `zomator` can be installed from our group [Github](https://github.com/yitang310/zomator). 
 
 `install.packages("rebird")`
+
 `devtools::install_github("yitang310/zomator")`
 
 ### Usage
