@@ -15,7 +15,7 @@ RoxygenNote: 6.1.1
 Suggests: knitr, rmarkdown, testthat
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2020-02-04 20:03:07 UTC; ty
+Packaged: 2020-02-05 09:24:13 UTC; ty
 Author: Yi Tang [aut, cre],
   Chenxi Yang [aut],
   Huazi Li [aut]

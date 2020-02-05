@@ -17,7 +17,7 @@
 #'
 #' @export
 #' @examples
-#' get_locations("528b6ee8d624e5e3e741f1fbd895b760","van")
+#' get_locations("testkey","van")
 #'
 
 #function to search for Zomato locations by keyword
@@ -25,6 +25,11 @@ get_locations<-function(key,query,
                         lat=NULL,lon=NULL,count=NULL){
   #check if given api
   apikey_check(key)
+  #check if the testkey
+  if (key=="testkey"){
+    testword<-"This is a testkey."
+    return(testword)
+  }
   if (is.null(query)){
     stop("Please enter the city name.")
   }

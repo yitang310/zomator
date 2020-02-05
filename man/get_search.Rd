@@ -45,7 +45,7 @@ get_search(key = NULL, q = NULL, entity_id = NULL,
 Search for restaurants
 }
 \examples{
-get_search(key="00b8630a1745b3dda0d7ec926bba5c04", q="van")
+get_search(key="testkey", q="van")
 }
 \author{
 Chenxi Yang <chenxxiyang@gmail.com>

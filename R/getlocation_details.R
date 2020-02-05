@@ -41,7 +41,7 @@
 #'
 #' @export
 #' @examples
-#' get_location_details("528b6ee8d624e5e3e741f1fbd895b760",1,"city")
+#' get_location_details("testkey",1,"city")
 #'
 
 
@@ -50,6 +50,13 @@
 get_location_details<-function(key=NULL,entity_id = NULL,entity_type = NULL){
   #check if given api
   apikey_check(key)
+
+  #check if the testkey
+  if (key=="testkey"){
+    testword<-"This is a testkey."
+    return(testword)
+  }
+
   #check if given entity_id and entity_type
   if(is.null(entity_id) | is.null(entity_type)){
     stop("Please enter entity_id and entity_type.")

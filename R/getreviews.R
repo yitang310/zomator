@@ -33,7 +33,7 @@
 #'
 #' @export
 #' @examples
-#' get_reviews(key="528b6ee8d624e5e3e741f1fbd895b760", res_id="16774318")
+#' get_reviews(key="testkey", res_id="16774318")
 
 # Function of getting reviews about the restaurant
 
@@ -42,6 +42,11 @@ get_reviews <- function(key=NULL, res_id=NULL) {
   # Check the validation of api key
   apikey_check(key)
 
+  #check if the testkey
+  if (key=="testkey"){
+    testword<-"This is a testkey."
+    return(testword)
+  }
   # Check whether res_id is given
   if (is.null(res_id)){
     stop("Please enter the restaurant ID.")

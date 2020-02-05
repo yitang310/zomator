@@ -20,7 +20,7 @@
 #'
 #' @export
 #' @examples
-#' get_dailymenu(key="528b6ee8d624e5e3e741f1fbd895b760", res_id="16507624")
+#' get_dailymenu(key="testkey", res_id="16507624")
 
 # Function of getting daily menu of a restaurant
 
@@ -28,6 +28,12 @@ get_dailymenu <- function(key=NULL, res_id=NULL) {
 
   # Check the validation of api key
   apikey_check(key)
+
+  #check if the testkey
+  if (key=="testkey"){
+    testword<-"This is a testkey."
+    return(testword)
+  }
 
   # Check whether res_id is given
   if (is.null(res_id)){

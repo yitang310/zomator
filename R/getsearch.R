@@ -27,7 +27,7 @@
 #'
 #' @export
 #' @examples
-#' get_search(key="00b8630a1745b3dda0d7ec926bba5c04", q="van")
+#' get_search(key="testkey", q="van")
 
 
 # Function of getting information about the restaurant
@@ -44,6 +44,12 @@ get_search<- function(key=NULL,
 
   # Check the validation of api key
   apikey_check(key)
+
+  #check if the testkey
+  if (key=="testkey"){
+    testword<-"This is a testkey."
+    return(testword)
+  }
 
   URL <- 'https://developers.zomato.com'
   params <- list(

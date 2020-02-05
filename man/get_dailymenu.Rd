@@ -21,7 +21,7 @@ dishes (data frame) dishes on the daily menu
 Get daily menu of a restaurant
 }
 \examples{
-get_dailymenu(key="528b6ee8d624e5e3e741f1fbd895b760", res_id="16507624")
+get_dailymenu(key="testkey", res_id="16507624")
 }
 \author{
 Chenxi Yang <chenxxiyang@gmail.com>
