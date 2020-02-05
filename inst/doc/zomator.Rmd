@@ -1,0 +1,1342 @@
+---
+title: "zomator"
+vignette: >
+  %\VignetteIndexEntry{zomator}
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+#library(zomator)
+
+key="528b6ee8d624e5e3e741f1fbd895b760"
+```
+
+# Intro to the zomator package
+
+A package that using API to access to [Zomato](https://developers.zomato.com/).
+
+## Installation
+
+You can install the stable version from CRAN, when available
+
+```{r install, eval=FALSE}
+install.packages("zomator")
+```
+
+Or the development version from Github
+
+```{r installgithub, eval=FALSE}
+install.packages("devtools")
+devtools::install_github("yitang310/zomator")
+```
+
+Then load the package into the R sesssion.
+
+```{r}
+library("zomator")
+```
+
+## Usage
+
+Inside `zomator`, there are 12 functions:
+
+get_categories, get_cities, get_collections, get_cuisines, get_establishments, get_geocode, 
+get_location_details, get_locations, get_dailymenu, get_restaurant, get_reviews, get_search.
+
+API requests to Zomato now require users to provide an API key, which can be obtained on 
+[Zomato](https://developers.zomato.com/).
+
+You can pass it to the 'key' argument in `zomator` functions, but we highly recommend storing
+it as an environment variable called API_KEY in your file.
+
+You can keep your .Renviron file in your global R home directory (`R.home()`), your user's home
+directory (`Sys.getenv("HOME")`), or your current working directory (`getwd()`). Remember that
+Renviron is loaded once when you start R, so if you add your API key to the file you will have 
+to restart your R session. See <https://csgillespie.github.io/efficientR/r-startup.html> for more
+information on R's startup files.
+
+
+## Work Distribution
+
+Readme: Yang (editor)
+
+Description: Tang (editor)
+
+Vignettes: Yang (main editor), Tang (editor), Li (editor)
+
+
+R functions:
+
+- get_categories: Tang (author)
+
+- get_cities: Tang (author)
+
+- get_collections: Tang (author)
+
+- get_cuisines: Tang (author)
+
+- get_establishments: Li (author), Tang (editor)
+
+- get_geocode: Li (author), Tang (editor)
+
+- get_location_details: Li (author), Yang (editor)
+
+- get_locations: Li (author), Tang (editor)
+
+- get_dailymenu: Yang (author) 
+
+- get_restaurant: Yang (author)
+
+- get_reviews: Yang (author)
+
+- get_search: Yang (author)
+
+
+Tests:
+
+testpart1: Tang (author)
+
+testpart2: Li (author)
+
+testpart3: Yang (author)
+
+
+# requirement  
+ Go to [Zomato Web Site](https://developers.zomato.com/api#headline1) request An API Key
+
+# please replace "key" with your API key 
+
+```{r}
+get_categories(key=key)
+```
+
+```
+   categories.id          categories.name
+1              1                 Delivery
+2              2                 Dine-out
+3              3                Nightlife
+4              4              Catching-up
+5              5                 Takeaway
+6              6                    Cafes
+7              7              Daily Menus
+8              8                Breakfast
+9              9                    Lunch
+10            10                   Dinner
+11            11              Pubs & Bars
+12            13 Pocket Friendly Delivery
+13            14          Clubs & Lounges
+
+```
+
+```{r}
+get_cities(key=key,q="van")
+```
+
+```
+      id                name country_id  country_name
+1   9560     Van Alstyne, TX        216 United States
+2   6133       Van Buren, ME        216 United States
+3   6702       Van Buren, MO        216 United States
+4   7744       Van Etten, NY        216 United States
+5   9126        Van Horn, TX        216 United States
+6   9618       Van Vleck, TX        216 United States
+7    256 Metro Vancouver, BC         37        Canada
+8  10650       Vancouver, WA        216 United States
+9   5849       Vanceburg, KY        216 United States
+10  5051        Vandalia, IL        216 United States
+
+                                              country_flag_url should_experiment_with
+1  https://b.zmtcdn.com/images/countries/flags/country_216.png                      0
+2  https://b.zmtcdn.com/images/countries/flags/country_216.png                      0
+3  https://b.zmtcdn.com/images/countries/flags/country_216.png                      0
+4  https://b.zmtcdn.com/images/countries/flags/country_216.png                      0
+5  https://b.zmtcdn.com/images/countries/flags/country_216.png                      0
+6  https://b.zmtcdn.com/images/countries/flags/country_216.png                      0
+7   https://b.zmtcdn.com/images/countries/flags/country_37.png                      0
+8  https://b.zmtcdn.com/images/countries/flags/country_216.png                      0
+9  https://b.zmtcdn.com/images/countries/flags/country_216.png                      0
+10 https://b.zmtcdn.com/images/countries/flags/country_216.png                      0
+   
+   has_go_out_tab discovery_enabled has_new_ad_format is_state state_id
+1               0                 0                 0        0      111
+2               0                 0                 0        0       89
+3               0                 0                 0        0       92
+4               0                 0                 0        0      103
+5               0                 0                 0        0      111
+6               0                 0                 0        0      111
+7               0                 0                 0        0      121
+8               0                 0                 0        0      115
+9               0                 0                 0        0       85
+10              0                 0                 0        0       82
+         
+         state_name state_code
+1             Texas         TX
+2             Maine         ME
+3          Missouri         MO
+4    New York State         NY
+5             Texas         TX
+6             Texas         TX
+7  British Columbia         BC
+8  Washington State         WA
+9          Kentucky         KY
+10         Illinois         IL
+
+```
+
+```{r}
+get_collections(key=key,city_id=256)
+```
+
+```
+   collection.collection_id collection.res_count
+1                         1                   30
+2                       760                   28
+3                         5                   27
+4                         6                   15
+5                         8                   16
+6                        65                   22
+7                        40                   28
+8                       125                   23
+9                        48                   15
+10                       39                   18
+11                       14                   22
+12                       35                   14
+13                       46                   22
+14                       24                   13
+15                       41                   21
+16                      203                   20
+17                      112                   18
+18                      207                   28
+19                       33                   29
+20                      204                   19
+21                      222                   25
+22                       15                   25
+23                      201                   17
+24                       64                   14
+25                      429                   20
+26                      446                   18
+27                      714                   18
+28                      237                   16
+29                      318                   14
+30                      447                   32
+31                      235                   25
+ 
+                                                                      collection.image_url
+1    https://b.zmtcdn.com/data/collections/b53772a204429cb9b42313d6dc22bf3c_1556018415.jpg
+2    https://b.zmtcdn.com/data/collections/0297238e2a8c0fcd5e75e0b7baa7093d_1455565224.jpg
+3    https://b.zmtcdn.com/data/collections/d38669ed7b829ceb2814678420a629da_1560353561.jpg
+4    https://b.zmtcdn.com/data/collections/33ebdc279ce63a293c52095b1facf611_1539323119.jpg
+5  https://b.zmtcdn.com/data/collections/52d2ea4a19bee4d876e42d14574b2508_1427378290_l.jpg
+6    https://b.zmtcdn.com/data/collections/73391cc46aa0d33d5c5cf3bd09981bc6_1469073198.jpg
+7    https://b.zmtcdn.com/data/collections/bc0c37f8fc87da896641714b9ef7f0b7_1575621158.jpg
+8    https://b.zmtcdn.com/data/collections/b386fe9dca9543d888e43fb8d3425436_1477292962.jpg
+9  https://b.zmtcdn.com/data/collections/3348431bcaa616e6cd3ccadc95ceca63_1427263670_l.jpg
+10   https://b.zmtcdn.com/data/collections/8ba9c4eefe77e89afabda22482f13031_1460092296.jpg
+11   https://b.zmtcdn.com/data/collections/0fecfe2b205a9dd7da273f6841115eef_1454036759.jpg
+12 https://b.zmtcdn.com/data/collections/b5a5caace052be929d9829d32ae1c591_1441697242_l.jpg
+13 https://b.zmtcdn.com/data/collections/1074db54a4fe3de129f7f595e62cf89d_1418393267_l.jpg
+14 https://b.zmtcdn.com/data/collections/fb1a0edf9843e7a9145d44d0edaf553a_1421673616_l.jpg
+15 https://b.zmtcdn.com/data/collections/d0a0e32df636a9dfbf850f13a38aa834_1446629668_l.jpg
+16 https://b.zmtcdn.com/data/collections/ead72be0dfd00a6577b9a668bf5c393b_1429785802_l.jpg
+17 https://b.zmtcdn.com/data/collections/d54df30563212e846bf79dd1ba0f1de4_1419918252_l.jpg
+18 https://b.zmtcdn.com/data/collections/07462839e697e1e78c28dd4013d323a6_1442300754_l.jpg
+19 https://b.zmtcdn.com/data/collections/30f9382a8d53b25e258fd0564523a7b6_1418398601_l.jpg
+20 https://b.zmtcdn.com/data/collections/e646f44bd5e27764586a4bec6add3b75_1430816900_l.jpg
+21 https://b.zmtcdn.com/data/collections/068705072f757d7aad443e55085dc61f_1430118583_l.jpg
+22 https://b.zmtcdn.com/data/collections/10dcdac2c6d08f9bae81b04042c34544_1438664251_l.jpg
+23 https://b.zmtcdn.com/data/collections/c5e0ef119285ca2236a884b32b9d4f18_1445595921_l.jpg
+24 https://b.zmtcdn.com/data/collections/5b0cc8f2aae006cf0635c990b4a1a110_1421849036_l.jpg
+25 https://b.zmtcdn.com/data/collections/52ddbf4038db984190ddb910311225e9_1426837329_l.jpg
+26 https://b.zmtcdn.com/data/collections/0707137915a22b40b4d5e8274f47d791_1427179044_l.jpg
+27 https://b.zmtcdn.com/data/collections/40d01ac6a776346c8fd7b66c8564a3ec_1442312930_l.jpg
+28 https://b.zmtcdn.com/data/collections/58ada2fe8114c2e8e84e5eba4eaa36ed_1428383289_l.jpg
+29 https://b.zmtcdn.com/data/collections/979cdb510dd79262b6b7391708b64550_1444636538_l.jpg
+30 https://b.zmtcdn.com/data/collections/f2eab8b5e872abce579d51d3b50d294d_1427180187_l.jpg
+31 https://b.zmtcdn.com/data/collections/8376ac139adff6fba677dfab9015e097_1427532216_l.jpg
+           
+                                                                                                             collection.url
+1            https://www.zomato.com/penticton-bc/top-restaurants?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+2                  https://www.zomato.com/penticton-bc/mealshare?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+3                https://www.zomato.com/penticton-bc/best-burger?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+4     https://www.zomato.com/penticton-bc/late-night-restaurants?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+5         https://www.zomato.com/penticton-bc/hidden-restaurants?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+6                      https://www.zomato.com/penticton-bc/sushi?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+7             https://www.zomato.com/penticton-bc/dessert-places?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+8             https://www.zomato.com/penticton-bc/weekend-brunch?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+9                    https://www.zomato.com/penticton-bc/seafood?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+10       https://www.zomato.com/penticton-bc/healthy-restaurants?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+11      https://www.zomato.com/penticton-bc/sea-view-restaurants?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+12         https://www.zomato.com/penticton-bc/ramen-restaurants?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+13          https://www.zomato.com/penticton-bc/date-restaurants?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+14       https://www.zomato.com/penticton-bc/unusual-restaurants?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+15                https://www.zomato.com/penticton-bc/craft-beer?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+16 https://www.zomato.com/penticton-bc/great-chinese-restaurants?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+17          https://www.zomato.com/penticton-bc/best-pizza-spots?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+18                  https://www.zomato.com/penticton-bc/best-pho?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+19           https://www.zomato.com/penticton-bc/artisanal-cafes?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+20                https://www.zomato.com/penticton-bc/best-tacos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+21           https://www.zomato.com/penticton-bc/best-sandwiches?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+22                https://www.zomato.com/penticton-bc/sports-bar?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+23          https://www.zomato.com/penticton-bc/thai-restaurants?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+24                  https://www.zomato.com/penticton-bc/high-tea?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+25             https://www.zomato.com/penticton-bc/farm-to-table?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+26                 https://www.zomato.com/penticton-bc/breweries?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+27              https://www.zomato.com/penticton-bc/winter-cafes?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+28              https://www.zomato.com/penticton-bc/best-poutine?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+29              https://www.zomato.com/penticton-bc/heated-patio?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+30                https://www.zomato.com/penticton-bc/work-cafes?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+31       https://www.zomato.com/penticton-bc/best-hangover-cures?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+          
+          collection.title
+1       Trending This Week
+2                Mealshare
+3          Kickass Burgers
+4   Late Night Restaurants
+5              Hidden Gems
+6              Super Sushi
+7              Sweet Tooth
+8         Weekend Brunches
+9            Super Seafood
+10          Healthy Eating
+11                Sea View
+12                   Ramen
+13              Date Night
+14           Unique Dining
+15              Craft Beer
+16           Great Chinese
+17             Upper Crust
+18 Restaurants Serving Pho
+19         Artisanal cafes
+20             Tasty Tacos
+21        Super Sandwiches
+22             Sports Bars
+23           Terrific Thai
+24                High Tea
+25           Farm-to-table
+26        Badass breweries
+27              Cozy Cafés
+28         Perfect Poutine
+29            Heated patio
+30             Work spaces
+31           Greasy Spoons
+                                                                                                 
+                                                                                                 collection.description
+1                                                                            Most popular restaurants in town this week
+2                                                                      Feed someone in need the next time you dine out.
+3                                                                                  Chow down on a cheeselicious burger!
+4  Banish those midnight cravings with our handy list of late night restaurants serving all your favourite comfort food
+5                                                                    The definitive list of hidden gems you need to try
+6              Classic maki-style rolls, sashimi or nigiri sushi, hit up these spots for your favourite Japanese snack 
+7       From cookies and doughnuts to ice cream and cakes, knock yourself out with these classic and creative desserts 
+8                                   Sit back, enjoy a wide spread and forget that a new work week is sneaking up on you
+9                                                                                       The best seafood places in town
+10                                                                                             Grub that's good for you
+11                                                                 Amazing food, amazing views. How's that for win-win?
+12                                                                                     The city's best ramen, and more!
+13                                                                              Ideal spots to enjoy a romantic evening
+14                                                                           Dining experiences you'll remember forever
+15                                                                                         The best house brews in town
+16                                                            Some of the best Chinese food that your city has to offer
+17                                                                             For the delicious, cheesy mess you love.
+18                                  Hit up these places for some of the best soul warming Vietnamese noodle soup - Pho!
+19                                                                              One handcrafted magic in a cup, please.
+20                                                                      Eat your way through the best taquerias in town
+21                                                   Two slices of bread, meat and veggies and the rest is mere details
+22                                                                   The best places to enjoy some sport with your meal
+23                                                           The leading pad thai, rice noodles & peanut sauces in town
+24                                                                                              Fancy an evening cuppa?
+25                                        Organic, healthy and all natural food, from the fields straight to your plate
+26                                                                          Sometimes, bottled beer just doesn't cut it
+27                                             Here is our list of warm and cosy places to curl up with a cup of coffee
+28                                                               Fries, cheese and gravy. What could possibly go wrong?
+29                                                        Keep warm while you drink up at the city's best heated patios
+30                                                                      Get a bit to eat to go with the peace and quiet
+31                                                                                 These places will sort you right out
+           
+           collection.share_url
+1    http://www.zoma.to/c-256/1
+2  http://www.zoma.to/c-256/760
+3    http://www.zoma.to/c-256/5
+4    http://www.zoma.to/c-256/6
+5    http://www.zoma.to/c-256/8
+6   http://www.zoma.to/c-256/65
+7   http://www.zoma.to/c-256/40
+8  http://www.zoma.to/c-256/125
+9   http://www.zoma.to/c-256/48
+10  http://www.zoma.to/c-256/39
+11  http://www.zoma.to/c-256/14
+12  http://www.zoma.to/c-256/35
+13  http://www.zoma.to/c-256/46
+14  http://www.zoma.to/c-256/24
+15  http://www.zoma.to/c-256/41
+16 http://www.zoma.to/c-256/203
+17 http://www.zoma.to/c-256/112
+18 http://www.zoma.to/c-256/207
+19  http://www.zoma.to/c-256/33
+20 http://www.zoma.to/c-256/204
+21 http://www.zoma.to/c-256/222
+22  http://www.zoma.to/c-256/15
+23 http://www.zoma.to/c-256/201
+24  http://www.zoma.to/c-256/64
+25 http://www.zoma.to/c-256/429
+26 http://www.zoma.to/c-256/446
+27 http://www.zoma.to/c-256/714
+28 http://www.zoma.to/c-256/237
+29 http://www.zoma.to/c-256/318
+30 http://www.zoma.to/c-256/447
+31 http://www.zoma.to/c-256/235
+
+```
+
+```{r}
+get_cuisines(key=key,city_id=256)
+```
+
+```
+    cuisine.cuisine_id cuisine.cuisine_name
+1                 1035               Afghan
+2                  152              African
+3                    1             American
+4                    4              Arabian
+5                    3                Asian
+6                  401         Asian Fusion
+7                  131           Australian
+8                  201             Austrian
+9                  193                  BBQ
+10                 955               Bagels
+11                   5               Bakery
+12                 227             Bar Food
+13                 132              Belgian
+14                 270            Beverages
+15                 159            Brazilian
+16                 182            Breakfast
+17                 133              British
+18                 247           Bubble Tea
+19                 168               Burger
+20                  22              Burmese
+21                  30                 Cafe
+22                 491                Cajun
+23                 111            Cambodian
+24                 381             Canadian
+25                 121            Cantonese
+26                 158            Caribbean
+27                  25              Chinese
+28                 161       Coffee and Tea
+29                 287            Colombian
+30                 144         Contemporary
+31                  35          Continental
+32                 153                Cuban
+33                 192                 Deli
+34                 100             Desserts
+35                 411              Dim Sum
+36                 541                Diner
+37                 959               Donuts
+38                 268          Drinks Only
+39                 651     Eastern European
+40                 149            Ethiopian
+41                  38             European
+42                  40            Fast Food
+43                 112             Filipino
+44                 271          Finger Food
+45                 298       Fish and Chips
+46                  45               French
+47                 501        Frozen Yogurt
+48                 274               Fusion
+49                 134               German
+50                 156                Greek
+51                 181                Grill
+52                 441        Hakka Chinese
+53                 521             Hawaiian
+54                 143         Healthy Food
+55                 791      Hong Kong Style
+56                 228            Hungarian
+57                 233            Ice Cream
+58                 148               Indian
+59                 114           Indonesian
+60                 154        International
+61                 140              Iranian
+62                 135                Irish
+63                  55              Italian
+64                 207             Jamaican
+65                  60             Japanese
+66                 265               Jewish
+67                 164               Juices
+68                 178                Kebab
+69                  67               Korean
+70                 136       Latin American
+71                  66             Lebanese
+72                  69            Malaysian
+73                  70        Mediterranean
+74                  73              Mexican
+75                 137       Middle Eastern
+76                  74            Mongolian
+77                 147             Moroccan
+78                 117             Nepalese
+79                  50         North Indian
+80                 861     Northern Chinese
+81                 963    Pacific Northwest
+82                 139            Pakistani
+83                 209            Pan Asian
+84                 183           Patisserie
+85                  81              Persian
+86                 162             Peruvian
+87                  82                Pizza
+88                 219               Polish
+89                  87           Portuguese
+90                 983             Pub Food
+91                 511            Quebecois
+92                 320                Ramen
+93                  27            Raw Meats
+94                  84              Russian
+95                 998                Salad
+96                 601          Salvadorean
+97                 304             Sandwich
+98                  83              Seafood
+99                 831             Shanghai
+100                128              Sichuan
+101                119          Singaporean
+102                461            Soul Food
+103                 85         South Indian
+104                471             Southern
+105                 89              Spanish
+106                 86           Sri Lankan
+107                141                Steak
+108                 90          Street Food
+109                177                Sushi
+110                211              Swedish
+111                213                Swiss
+112                212               Syrian
+113                190            Taiwanese
+114                179                Tapas
+115                163                  Tea
+116                150              Tex-Mex
+117                 95                 Thai
+118                 93              Tibetan
+119                631         Trinbagonian
+120                142              Turkish
+121                451            Ukrainian
+122                308           Vegetarian
+123                641           Venezuelan
+124                 99           Vietnamese
+125                851             Xinjiang
+```
+
+```{r}
+get_establishments(key =key,city_id = 256)
+```
+
+```
+   establishment.id establishment.name
+1                16      Casual Dining
+2                21        Quick Bites
+3                 1               Café
+4                 7                Bar
+5                23    Dessert Parlour
+6                31             Bakery
+7               278           Wine Bar
+8               295        Noodle Shop
+9                41      Beverage Shop
+10               18        Fine Dining
+11              285        Fast Casual
+12                5             Lounge
+13               20         Food Court
+14              294            Izakaya
+15                6                Pub
+16                8               Club
+17               81         Food Truck
+18              281          Fast Food
+19              284          Juice Bar
+20              271      Sandwich Shop
+21              161       Microbrewery
+22              275           Pizzeria
+23              272       Cocktail Bar
+24              286        Coffee Shop
+25              261     Ice Cream Shop
+26              309         Steakhouse
+27              283            Brewery
+28               91             Bistro
+29              141         Patisserie
+30              290           Vineyard
+
+```
+```{r}
+get_geocode(key=key,1.2,2.3)
+```
+
+```{r}
+data_geocode <- get_geocode(key=key,1.2,2.3)
+plot(data_geocode$restaurant.location.latitude,data_geocode$restaurant.location.longitude,main="The Locations of 10 Restaurants in Alamo Heights San Antonio")
+```
+```
+                 restaurant.apikey restaurant.id               restaurant.name
+2 00b8630a1745b3dda0d7ec926bba5c04      17153325                Florio's Pizza
+3 00b8630a1745b3dda0d7ec926bba5c04      17154519                        Soluna
+4 00b8630a1745b3dda0d7ec926bba5c04      17157816                   Stone Werks
+5 00b8630a1745b3dda0d7ec926bba5c04      17154889  Twin Sisters Bakery and Cafe
+6 00b8630a1745b3dda0d7ec926bba5c04      17154602 Sushi Zushi - Lincoln Heights
+7 00b8630a1745b3dda0d7ec926bba5c04      17160338                Torchy's Tacos
+8 00b8630a1745b3dda0d7ec926bba5c04      17153353                   Frederick's
+9 00b8630a1745b3dda0d7ec926bba5c04      17154147                       Orderup
+                                                                                                                            restaurant.url
+2                https://www.zomato.com/san-antonio/florios-pizza-alamo-heights?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+3                       https://www.zomato.com/san-antonio/soluna-alamo-heights?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+4                  https://www.zomato.com/san-antonio/stone-werks-alamo-heights?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+5 https://www.zomato.com/san-antonio/twin-sisters-bakery-and-cafe-alamo-heights?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+6  https://www.zomato.com/san-antonio/sushi-zushi-lincoln-heights-alamo-heights?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+7                https://www.zomato.com/san-antonio/torchys-tacos-alamo-heights?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+8                   https://www.zomato.com/san-antonio/fredericks-alamo-heights?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+9                      https://www.zomato.com/san-antonio/orderup-alamo-heights?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+ 
+  restaurant.switch_to_order_menu              restaurant.cuisines
+2                               0                   Pizza, Italian
+3                               0                          Mexican
+4                               0 Burger, Sandwich, Seafood, Pizza
+5                               0                             Cafe
+6                               0                            Sushi
+7                               0           Taco, Tex-Mex, Mexican
+8                               0                    Asian, French
+9                               0         Mexican, American, Pizza
+  
+  restaurant.average_cost_for_two restaurant.price_range restaurant.currency
+2                              10                      1                   $
+3                              35                      3                   $
+4                              25                      2                   $
+5                              10                      1                   $
+6                              25                      2                   $
+7                              10                      1                   $
+8                              40                      3                   $
+9                              10                      1                   $
+  
+  restaurant.offers restaurant.opentable_support restaurant.is_zomato_book_res
+2              NULL                            0                             0
+3              NULL                            0                             0
+4              NULL                            0                             0
+5              NULL                            0                             0
+6              NULL                            0                             0
+7              NULL                            0                             0
+8              NULL                            0                             0
+9              NULL                            0                             0
+  
+  restaurant.mezzo_provider restaurant.is_book_form_web_view
+2                     OTHER                                0
+3                     OTHER                                0
+4                     OTHER                                0
+5                     OTHER                                0
+6                     OTHER                                0
+7                     OTHER                                0
+8                     OTHER                                0
+9                     OTHER                                0
+  
+  restaurant.book_form_web_view_url restaurant.book_again_url
+2                                                            
+3                                                            
+4                                                            
+5                                                            
+6                                                            
+7                                                            
+8                                                            
+9                                                            
+                                                                                                                                                                                                                                                                                                            restaurant.thumb
+2                                                                                                                                                 
+3 https://b.zmtcdn.com/data/res_imagery/17154519_RESTAURANT_f4b0fa1968829461fb2959aef4e8278b_c.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A
+4                                                                                                                                                 
+5                                                                                                                                                 
+6      https://b.zmtcdn.com/data/res_imagery/17154600_CHAIN_6e908c64b8fa11ae884bd915d5778d10_c.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A
+7                                                                                                                                                  
+8                                                                                                                                                 
+9                                                                                                                                                   
+      
+                                                                                                                                   restaurant.photos_url
+2                https://www.zomato.com/san-antonio/florios-pizza-alamo-heights/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop
+3                       https://www.zomato.com/san-antonio/soluna-alamo-heights/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop
+4                  https://www.zomato.com/san-antonio/stone-werks-alamo-heights/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop
+5 https://www.zomato.com/san-antonio/twin-sisters-bakery-and-cafe-alamo-heights/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop
+6  https://www.zomato.com/san-antonio/sushi-zushi-lincoln-heights-alamo-heights/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop
+7                https://www.zomato.com/san-antonio/torchys-tacos-alamo-heights/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop
+8                   https://www.zomato.com/san-antonio/fredericks-alamo-heights/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop
+9                      https://www.zomato.com/san-antonio/orderup-alamo-heights/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop
+                                                                                                                                                                                      
+                                                                                                                                                                                                                                                                                                                            restaurant.menu_url
+2 https://www.zomato.com/san-antonio/florios-pizza-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
+3 https://www.zomato.com/san-antonio/soluna-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
+4 https://www.zomato.com/san-antonio/stone-werks-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
+5 https://www.zomato.com/san-antonio/twin-sisters-bakery-and-cafe-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
+6 https://www.zomato.com/san-antonio/sushi-zushi-lincoln-heights-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
+7 https://www.zomato.com/san-antonio/torchys-tacos-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
+8 https://www.zomato.com/san-antonio/fredericks-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
+9 https://www.zomato.com/san-antonio/orderup-alamo-heights/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
+                                                                         
+                                                                         restaurant.featured_image
+2                                                                                                 
+3 https://b.zmtcdn.com/data/res_imagery/17154519_RESTAURANT_f4b0fa1968829461fb2959aef4e8278b_c.jpg
+4                                                                                                 
+5                                                                                                 
+6      https://b.zmtcdn.com/data/res_imagery/17154600_CHAIN_6e908c64b8fa11ae884bd915d5778d10_c.jpg
+7                                                                                                 
+8                                                                                                 
+9                                                                                                 
+ 
+  restaurant.has_online_delivery restaurant.is_delivering_now
+2                              0                            0
+3                              0                            0
+4                              0                            0
+5                              0                            0
+6                              0                            0
+7                              0                            0
+8                              0                            0
+9                              0                            0
+ 
+  restaurant.include_bogo_offers          restaurant.deeplink
+2                           TRUE zomato://restaurant/17153325
+3                           TRUE zomato://restaurant/17154519
+4                           TRUE zomato://restaurant/17157816
+5                           TRUE zomato://restaurant/17154889
+6                           TRUE zomato://restaurant/17154602
+7                           TRUE zomato://restaurant/17160338
+8                           TRUE zomato://restaurant/17153353
+9                           TRUE zomato://restaurant/17154147
+ 
+  restaurant.is_table_reservation_supported restaurant.has_table_booking
+2                                         0                            0
+3                                         0                            0
+4                                         0                            0
+5                                         0                            0
+6                                         0                            0
+7                                         0                            0
+8                                         0                            0
+9                                         0                            0
+     
+                                                                                                                                   restaurant.events_url
+2                https://www.zomato.com/san-antonio/florios-pizza-alamo-heights/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+3                       https://www.zomato.com/san-antonio/soluna-alamo-heights/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+4                  https://www.zomato.com/san-antonio/stone-werks-alamo-heights/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+5 https://www.zomato.com/san-antonio/twin-sisters-bakery-and-cafe-alamo-heights/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+6  https://www.zomato.com/san-antonio/sushi-zushi-lincoln-heights-alamo-heights/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+7                https://www.zomato.com/san-antonio/torchys-tacos-alamo-heights/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+8                   https://www.zomato.com/san-antonio/fredericks-alamo-heights/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+9                      https://www.zomato.com/san-antonio/orderup-alamo-heights/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+  
+  restaurant.R.res_id restaurant.R.has_menu_status.delivery
+2            17153325                                    -1
+3            17154519                                    -1
+4            17157816                                    -1
+5            17154889                                    -1
+6            17154602                                    -1
+7            17160338                                    -1
+8            17153353                                    -1
+9            17154147                                    -1
+  
+  restaurant.R.has_menu_status.takeaway
+2                                    -1
+3                                    -1
+4                                    -1
+5                                    -1
+6                                    -1
+7                                    -1
+8                                    -1
+9                                    -1
+                               
+                                       restaurant.location.address
+2           7701 Broadway Street, Alamo Heights, San Antonio 78209
+3                          7959 Broadway Street, San Antonio 78209
+4                999 East Basse Road, Suite 130, San Antonio 78209
+5                   6322 N New Braunfels Avenue, San Antonio 78209
+6                                999 East Basse Road Ste 186 78209
+7                                  999 East. Basse Road #183 78209
+8 7701 Broadway Street, Suite 20, Alamo Heights, San Antonio 78209
+9                              999 E Basse Road, San Antonio 78209
+  
+  restaurant.location.locality restaurant.location.city restaurant.location.city_id
+2                Alamo Heights              San Antonio                         304
+3                Alamo Heights              San Antonio                         304
+4                Alamo Heights              San Antonio                         304
+5                Alamo Heights              San Antonio                         304
+6                Alamo Heights              San Antonio                         304
+7                Alamo Heights              San Antonio                         304
+8                Alamo Heights              San Antonio                         304
+9                Alamo Heights              San Antonio                         304
+  
+  restaurant.location.latitude restaurant.location.longitude
+2                29.4996450000                -98.4666940000
+3                29.5065170000                -98.4663740000
+4                29.4971661000                -98.4664773000
+5                29.4881140000                -98.4591260000
+6                29.4969200000                -98.4697400000
+7                29.4975892000                -98.4705400000
+8                29.4996450000                -98.4666940000
+9                29.4967380000                -98.4682220000
+  
+  restaurant.location.zipcode restaurant.location.country_id
+2                       78209                            216
+3                       78209                            216
+4                       78209                            216
+5                       78209                            216
+6                       78209                            216
+7                       78209                            216
+8                       78209                            216
+9                       78209                            216
+ 
+  restaurant.location.locality_verbose restaurant.user_rating.aggregate_rating
+2           Alamo Heights, San Antonio                                     4.8
+3           Alamo Heights, San Antonio                                     4.0
+4           Alamo Heights, San Antonio                                     3.7
+5           Alamo Heights, San Antonio                                     4.0
+6           Alamo Heights, San Antonio                                     3.9
+7           Alamo Heights, San Antonio                                     3.8
+8           Alamo Heights, San Antonio                                     3.9
+9           Alamo Heights, San Antonio                                     4.0
+  
+  restaurant.user_rating.rating_text restaurant.user_rating.rating_color
+2                          Excellent                              3F7E00
+3                          Very Good                              5BA829
+4                               Good                              9ACD32
+5                          Very Good                              5BA829
+6                               Good                              9ACD32
+7                               Good                              9ACD32
+8                               Good                              9ACD32
+9                          Very Good                              5BA829
+  
+  restaurant.user_rating.votes restaurant.user_rating.rating_obj.title.text
+2                          417                                          4.8
+3                          141                                          4.0
+4                          148                                          3.7
+5                          178                                          4.0
+6                          139                                          3.9
+7                           70                                          3.8
+8                           78                                          3.9
+9                          107                                          4.0
+  
+  restaurant.user_rating.rating_obj.bg_color.type
+2                                            lime
+3                                            lime
+4                                            lime
+5                                            lime
+6                                            lime
+7                                            lime
+8                                            lime
+9                                            lime
+  
+  restaurant.user_rating.rating_obj.bg_color.tint
+2                                             800
+3                                             600
+4                                             600
+5                                             600
+6                                             600
+7                                             600
+8                                             600
+9                                             600
+
+```
+
+```{r}
+get_location_details(key=key,1,"city")
+```
+
+```{r}
+data_location_details<-get_location_details(key=key,256,"city")
+barplot(data_location_details$all_reviews_count,names.arg=data_location_details$name,las=2,cex.names = 0.5,cex.lab = 0.65, main = "Reviews Count for 10 Restaurants in Metro Vancouver British Columbia",cex.main=0.9)
+barplot(data_location_details$photo_count,names.arg=data_location_details$name,las=2,cex.names = 0.5,cex.lab = 0.65, main = "Photo Count of 10 Restaurants in Metro Vancouver British Columbia",cex.main=0.9)
+```
+
+```
+         id                 name switch_to_order_menu
+1  19012596         One8 Commune                    0
+2  19214877            FlyDining                    0
+3  18562836               Diggin                    0
+4      2742 Bukhara - ITC Maurya                    0
+5    301489      Barbeque Nation                    0
+6      2298           Haldiram's                    0
+7      5004   Om Sweets & Snacks                    0
+8    310078          Burger King                    0
+9    303371      Barbeque Nation                    0
+10     2004        Indian Accent                    0
+                                                 
+                                                                      cuisines
+1                               Finger Food, Continental, Mediterranean, Asian
+2                                                  Continental, Asian, Italian
+3                                                     Cafe, Italian, Beverages
+4                                                          North Indian, Kebab
+5                                                   North Indian, Chinese, BBQ
+6  Mithai, North Indian, Street Food, South Indian, Bakery, Chinese, Fast Food
+7                       Mithai, North Indian, Fast Food, South Indian, Chinese
+8                                                             Burger, American
+9                                                   North Indian, Chinese, BBQ
+10                                                               Modern Indian
+                                  
+                                   timings average_cost_for_two price_range currency
+1                     11 AM to 12 Midnight                 2500           4      Rs.
+2                  4pm – 11:30pm (Mon-Sun)                 5000           4      Rs.
+3                 11:30am – 10pm (Mon-Sun)                 1300           3      Rs.
+4       12:30 PM to 3 PM, 7 PM to 11:45 PM                 6500           4      Rs.
+5  12 Noon to 3:30 PM, 6:30 PM to 11:30 PM                 1600           3      Rs.
+6                  8:30am – 11pm (Mon-Sun)                  600           2      Rs.
+7                  8am – 10:30pm (Mon-Sun)                  500           2      Rs.
+8                           10 AM to 11 PM                  500           2      Rs.
+9  12 Noon to 3:30 PM, 6:30 PM to 11:30 PM                 1600           3      Rs.
+10    12 Noon to 2:30 PM, 7 PM to 10:30 PM                 5000           4      Rs.
+                                                                                                                                                                          highlights
+1 Dinner, Cash, Credit Card, Lunch, Takeaway Available, Debit Card, Valet Parking Available, Indoor Seating, Table booking recommended, Sneakpeek, Fullbar, Free Wifi, Air Conditioned
+2 Dinner, Cash, Debit Card, Lunch, Credit Card, Outdoor Seating, Table booking recommended
+3 Lunch, Takeaway Available, Debit Card, Dinner, Cash, Credit Card, Outdoor Seating, Air Conditioned, Indoor Seating
+4 Dinner, Credit Card, Lunch, Cash, Debit Card, Valet Parking Available, Indoor Seating, Table booking recommended, Air Conditioned, Luxury Dining, Fullbar, 4/5 Star, Restricted Entry, Wheelchair Accessible
+5 Dinner, Credit Card, Debit Card, Lunch, Cash, Buffet, Fullbar, Indoor Seating, Air Conditioned, Wifi, Outdoor Seating, Table booking recommended
+6 Dinner, Delivery, Credit Card, Debit Card, Lunch, Cash, Takeaway Available, Breakfast, Indoor Seating, Air Conditioned, Digital Payments Accepted, Desserts and Bakes
+7 Cash, Takeaway Available, Credit Card, Debit Card, Dinner, Delivery, Breakfast, Lunch, Indoor Seating, Air Conditioned, Pure Veg, Desserts and Bakes
+8 Mall Parking, Takeaway Available, Debit Card, Dinner, Cash, Delivery, Credit Card, Lunch, Air Conditioned, Wheelchair Accessible, Indoor Seating, Ticket Restaurant, Axis Bank - Dining Delights
+9 Dinner, Credit Card, Debit Card, Lunch, Cash, Indoor Seating, Air Conditioned, Table booking recommended, Buffet
+10 Lunch, Cash, Debit Card, Dinner, Credit Card, Table booking recommended, Fullbar, 4/5 Star, Wifi, Valet Parking Available, Indoor Seating, Air Conditioned, Luxury Dining
+
+   offers opentable_support is_zomato_book_res mezzo_provider is_book_form_web_view
+1    NULL                 0                  0          OTHER                     0
+2    NULL                 0                  0          OTHER                     0
+3    NULL                 0                  0          OTHER                     0
+4    NULL                 0                  0          OTHER                     0
+5    NULL                 0                  0          OTHER                     0
+6    NULL                 0                  0          OTHER                     0
+7    NULL                 0                  0          OTHER                     0
+8    NULL                 0                  0          OTHER                     0
+9    NULL                 0                  0          OTHER                     0
+10   NULL                 0                  0          OTHER                     0
+   
+   all_reviews_count photo_count
+1                366         450
+2                 21          37
+3               1670        4515
+4               1833        1479
+5               2248        3358
+6               1254        1953
+7               1192         529
+8               1685        1789
+9               1570        2093
+10              1532        5645
+
+   medio_provider has_online_delivery is_delivering_now include_bogo_offers
+1               1                   0                 0                TRUE
+2              NA                   0                 0                TRUE
+3              NA                   0                 0                TRUE
+4              NA                   0                 0                TRUE
+5               1                   0                 0                TRUE
+6              NA                   1                 0                TRUE
+7              NA                   1                 1                TRUE
+8              NA                   1                 0                TRUE
+9               1                   0                 0                TRUE
+10             NA                   0                 0                TRUE
+   
+   is_table_reservation_supported has_table_booking
+1                               1                 0
+2                               0                 0
+3                               0                 0
+4                               0                 0
+5                               1                 0
+6                               0                 0
+7                               0                 0
+8                               0                 0
+9                               1                 0
+10                              0                 0
+                              
+                              phone_numbers establishment R.has_menu_status.delivery
+1                              011 66992235           Bar                         -1
+2                            +91 8448444960 Casual Dining                         -1
+3                011 26110787, 011 26110788          Café                         -1
+4                011 46215152, 011 66325124   Fine Dining                         -1
+5                            +91 8061756000 Casual Dining                         -1
+6                011 47685301, 011 47685304    Sweet Shop                         -1
+7  0124 4271101, 0124 4271102, 0124 4271103   Quick Bites                          1
+8                              011 41403240   Quick Bites                         -1
+9                            +91 8061756000 Casual Dining                         -1
+10             +91 9871117968, 011 66175151   Fine Dining                         -1
+   
+   R.has_menu_status.takeaway
+1                          -1
+2                          -1
+3                          -1
+4                          -1
+5                          -1
+6                          -1
+7                          -1
+8                          -1
+9                          -1
+10                         -1
+                                 
+                                                                                   address
+1                                        8, World Mark 2, IGI Airport, Aerocity, New Delhi
+2                                                       Gardens Galleria, Sector 38, Noida
+3                10, Santushti Shopping Complex, Race Course Road, Chanakyapuri, New Delhi
+4                                                      ITC Maurya, Chanakyapuri, New Delhi
+5         2nd Floor, Munshilal Building, Block N, Outer Circle, Connaught Place, New Delhi
+6                                         M-48, 48/2, and 48/3, Connaught Place, New Delhi
+7                                                  SCO 17, Main Market, Sector 31, Gurgaon
+8                                        2nd Floor, Select Citywalk Mall, Saket, New Delhi
+9  A-79 A, Ground Floor, Hotel Savoy Suites, Captain Vijyant Thapar Marg, Sector 16, Noida
+10                                                        The Lodhi, Lodhi Road, New Delhi
+                      
+                      locality      city city_id      latitude     longitude zipcode
+1                     Aerocity New Delhi       1 28.5515370000 77.1227040000        
+2                    Sector 38     Noida       1 28.5637110510 77.3229883611        
+3                 Chanakyapuri New Delhi       1 28.5951426153 77.1979655698        
+4     ITC Maurya, Chanakyapuri New Delhi       1 28.5982159011 77.1736473218       0
+5              Connaught Place New Delhi       1 28.6303528452 77.2207485884        
+6              Connaught Place New Delhi       1 28.6341154631 77.2222033516       0
+7                    Sector 31   Gurgaon       1 28.4529982115 77.0504662022       0
+8  Select Citywalk Mall, Saket New Delhi       1 28.5292057837 77.2193729505        
+9                    Sector 16     Noida       1 28.5802547475 77.3151626810        
+10       The Lodhi, Lodhi Road New Delhi       1 28.5920639406 77.2376998141       0
+   
+   country_id                       locality_verbose aggregate_rating rating_text
+1           1                    Aerocity, New Delhi              4.4   Very Good
+2           1                       Sector 38, Noida              3.7        Good
+3           1                Chanakyapuri, New Delhi              4.3   Very Good
+4           1    ITC Maurya, Chanakyapuri, New Delhi              4.6   Excellent
+5           1             Connaught Place, New Delhi              4.2   Very Good
+6           1             Connaught Place, New Delhi              4.1   Very Good
+7           1                     Sector 31, Gurgaon              4.1   Very Good
+8           1 Select Citywalk Mall, Saket, New Delhi              4.0   Very Good
+9           1                       Sector 16, Noida              4.2   Very Good
+10          1       The Lodhi, Lodhi Road, New Delhi              4.9   Excellent
+   
+   rating_color votes rating_obj.title.text rating_obj.bg_color.type
+1        5BA829   455                   4.4                     lime
+2        9ACD32    83                   3.7                     lime
+3        5BA829  3215                   4.3                     lime
+4        3F7E00  4486                   4.6                     lime
+5        5BA829  4863                   4.2                     lime
+6        5BA829  2224                   4.1                     lime
+7        5BA829  2245                   4.1                     lime
+8        5BA829  3304                   4.0                     lime
+9        5BA829  2963                   4.2                     lime
+10       3F7E00  3678                   4.9                     lime
+   
+   rating_obj.bg_color.tint all_reviews.reviews
+1                       700                NULL
+2                       600                NULL
+3                       700                NULL
+4                       800                NULL
+5                       700                NULL
+6                       700                NULL
+7                       700                NULL
+8                       600                NULL
+9                       700                NULL
+10                      800                NULL
+
+```
+
+```{r}
+get_locations(key=key,query="van",count=1)
+```
+
+```
+  entity_type     entity_id                title    latitude    longitude    city_id      city_name    country_id     country_name
+         city          9560   Van Alstyne, Texas    33.42251    -96.57942       9560    Van Alstyne           216    United States
+```
+
+```{r}
+get_dailymenu(key=key, res_id="16507624")
+```
+
+```
+  daily_menu.daily_menu_id daily_menu.start_date         daily_menu.name
+1                 17178053   2020-02-04 00:00:00                 Polévky
+2                 17178059   2020-02-04 00:00:00 Předkrmy / Jídla k pivu
+3                 17178061   2020-02-04 00:00:00            Hlavní chody
+4                 17178064   2020-02-04 00:00:00                  Saláty
+5                 17191110   2020-02-04 00:00:00                  Dezert
+                                                                                 
+  daily_menu.dishes
+1 634207002, Bramboračka s hříbky, 45 Kč
+2 634206981, 634206982, 634206983, 634206984, 634206985, 634206986, 634206987, 634206988, 634206989, 634206990, Kachní paštika s brusinkami, mandlemi a cibulovou marmeládou, Studený roastbeef s hořčičnou omáčkou a okurkou, Rillettes z vepřového masa s hořčičnou omáčkou, Nakládaný hermelín, Nakládané olomoucké tvarůžky  , Domácí škvarková pomazánka s cibulkou, Tlačenka s cibulkou a octem, Jehněčí klobásky s hořčičným dipem a malým zelným salátem, Špekáčky na černém pivu, Slané pražené mandle (80 g), 89 Kč, 99 Kč, 85 Kč, 85 Kč, 79 Kč, 65 Kč, 59 Kč, 89 Kč, 89 Kč, 79 Kč
+3 634206991, 634206992, 634206993, 634206994, 634206995, 634206996, 634206997, 634206998, Dančí svíčková s karlovarským knedlíkem a brusinkami, Grilovaný flapsteak s gratinovanými bramborami a zelenými fazolkami, omáčka z pečeného česneku, Marinovaná pečená vepřová žebra s česnekovou majonézou, Medailonky z vepřové panenky s pečenou paprikou, brambory Grenaille a omáčka s rozmarýnem, Rolované farmářské kuře marinované v brandy, smetanová br. kaše s list. špenátem, Bůček na černém pivu s červeným zelím a bramborovými špalíky, Smažený řízek z přeštického prasátka s lehkým bramborovým salátem, Naše bramborové špalíky se smetanovým listovým špenátem, 239 Kč, 249 Kč, 196 Kč, 229 Kč, 165 Kč, 149 Kč, 185 Kč, 99 Kč
+4 635121494, 635121495, 635121496, Salát se smaženými kuřecími proužky, Salát s roastbeefem a pikantním česnekovým dresinkem, Salát z mladého špenátu a hrášku s šalotkou a čerstvým kozím sýrem, 129 Kč, 149 Kč, 129 Kč
+5 631103520, 631103521, Čokoládová pěna s višněmi marinovanými v griotce, Šlehaná zakysaná smetana s medem a čerstvým ovocem, máta, 55 Kč, 55 Kč
+
+```
+
+```{r}
+get_restaurant(key=key, res_id="16774318")
+```
+
+```
+  R.has_menu_status.delivery        R.has_menu_status.takeaway            R.res_id
+                          -1                                -1            16774318
+  
+  apikey                  id                              name
+     key            16774318             Otto Enoteca Pizzeria
+                                                                                                                                      url
+  https://www.zomato.com/new-york-city/otto-enoteca-pizzeria-greenwich-village?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+   
+                                                  address                 locality             city
+  One Fifth Avenue at 8th Street, Greenwich Village 10003        Greenwich Village    New York City
+  
+  city_id            latitude            longitude    zipcode     country_id       locality_verbose
+      280       40.7318200000       -73.9965400000      10003            216      Greenwich Village
+  
+  switch_to_order_menu         cuisines
+                     0   Pizza, Italian
+                                                                                 timings
+  12 Noon to 11 PM (Mon-Thu), 11:30 AM to 12 Midnight (Fri-Sat), 11:30 AM to 11 PM (Sun)
+  
+  average_cost_for_two    price_range     currency        highlights1     highlights2     highlights3
+                    40              3            $     Serves Alcohol        Delivery           Lunch
+  
+  highlights4          highlights5    highlights6           highlights7    highlights8
+       Dinner   Takeaway Available    Credit Card   Vegetarian Friendly        Fullbar
+                
+                highlights9      highlights10   opentable_support   is_zomato_book_res
+  Table booking recommended    Indoor Seating                   0                    0
+  
+  mezzo_provider is_book_form_web_view book_form_web_view_url book_again_url
+           OTHER                     0                                      
+                                                                                                                                 thumb
+  https://b.zmtcdn.com/data/pictures/8/16774318/b16e382e9f6696f911b600b7e5ca6839.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A
+  
+  aggregate_rating   rating_text   rating_color   rating_obj.text   rating_obj.bg_color.type
+               4.4     Very Good         5BA829               4.4                       lime
+  
+  rating_obj.bg_color.tint   votes   all_reviews_count
+                       700     568                  97
+                                                                                                                                             photos_url
+  https://www.zomato.com/new-york-city/otto-enoteca-pizzeria-greenwich-village/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop
+  
+  photo_count    photos.photo.id
+           88   u_A1MTE1MTYxNDYz
+                                                                                                                                photos.photo.url
+  https://b.zmtcdn.com/data/reviews_photos/ef8/d451664187858a70dd79bd8750e0fef8_1442095040.JPG?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A
+                                                                                                                                                                                                                                                                                                                          photos.photo.thumb_url
+  https://b.zmtcdn.com/data/reviews_photos/ef8/d451664187858a70dd79bd8750e0fef8_1442095040.JPG?impolicy=newcropandfit&cropw=900&croph=900&cropoffsetx=112&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore
+  
+  photos.photo.res_id   photos.photo.caption   photos.photo.timestamp   photos.photo.friendly_time
+             16774318                                      1442095369                 Sep 13, 2015
+  
+  photos.photo.width    photos.photo.height    photos.photo.user.name
+                 640                    640             Feisty Foodie
+  
+  photos.photo.user.zomato_handle      photos.photo.user.foodie_level
+                     feistyfoodie                         Connoisseur
+  
+  photos.photo.user.foodie_level_num   photos.photo.user.foodie_color
+                                  13                           e95151
+                                                                   
+                                                                   photos.photo.user.profile_url
+  https://www.zomato.com/feistyfoodie?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+                                                                                                             
+                                                                                                             photos.photo.user.profile_image
+  https://b.zmtcdn.com/data/user_profile_pictures/7d3/8268699d29fcede843861dd0c07b27d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A
+  
+  photos.photo.user.profile_deeplink
+                 zomato://u/20641164
+                                                                                                                                                                                                                                                                                                                                        menu_url
+  https://www.zomato.com/new-york-city/otto-enoteca-pizzeria-greenwich-village/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
+                                                                      featured_image
+  https://b.zmtcdn.com/data/pictures/8/16774318/b16e382e9f6696f911b600b7e5ca6839.jpg
+  
+  has_online_delivery   is_delivering_now   include_bogo_offers                     deeplink
+                    0                   0                  TRUE zomato://restaurant/16774318
+  
+  is_table_reservation_supported   has_table_booking
+                               0                   0
+       
+                                                                                                                                             events_url
+  https://www.zomato.com/new-york-city/otto-enoteca-pizzeria-greenwich-village/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+                   
+                   phone_numbers   review    establishment
+  (212) 995-9559, (212) 995-9559     NULL         Pizzeria
+  
+```
+
+```{r eval=FALSE}
+get_reviews(key=key, res_id="16774318")
+```
+
+```
+  review.rating
+1           5.0
+2           4.0
+3           4.0
+4           3.0
+5           3.5
+ review.review_text
+1                                                  
+2
+3
+4 Good restaurant pocket friendly menu great sitting arrangements and beautiful ambience. Has gobi manchurian spring roll and chilli chicken my favourite kiwi shake. I enjoyed a lot
+5 The pizza was decent, not the best I've had. The staff was great- knowledgeable and willing to give recommendations. Extensive wine list. The star of the meal, though was the "weekly" fromaggio which was burrata with spring vegetables. Impeccable flavours (and enough to act as a meal if you so desire- in fact, I thought it would have been great served on crust as a pizza). Enjoyable dining experience overall.
+  
+  review.id review.rating_color review.review_time_friendly review.rating_text
+1  45706756              305D02                3 months ago            Insane!
+2  45689448              5BA829                3 months ago             Great!
+3  45685699              5BA829                3 months ago             Great!
+4  43278019              CDD614                8 months ago            Average
+5  30119358              9ACD32                Apr 22, 2017        Good Enough
+  
+  review.timestamp review.likes review.comments_count review.user.name
+1       1571476136            0                     0 Siddharth Sharma
+2       1571391100            0                     0 Jennifer Kinleiy
+3       1571375261            0                     0     Rahul Prasad
+4       1559125150            0                     0      Wild Foodie
+5       1492821318            0                     0             Jess
+  
+  review.user.foodie_level review.user.foodie_level_num review.user.foodie_color
+1             Super Foodie                            9                   f58552
+2             Super Foodie                           10                   f58552
+3             Super Foodie                            9                   f58552
+4                     <NA>                           NA                   e95151
+5                   Foodie                            3                   ffd35d
+                                                                                         
+                                                                                             review.user.profile_url
+1 https://www.zomato.com/users/siddharth-sharma-144912900?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+2 https://www.zomato.com/users/jennifer-kinleiy-144763426?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+3     https://www.zomato.com/users/rahul-prasad-144721676?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+4      https://www.zomato.com/users/wild-foodie-115723433?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+5              https://www.zomato.com/users/jess-30953380?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+                                                                                          
+                                                                                                                   review.user.profile_image
+1                                      https://b.zmtcdn.com/images/user_avatars/mug_2x.png?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A
+2 https://b.zmtcdn.com/data/user_profile_pictures/484/cee2d5f7654008df694851492f668484.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A
+3 https://b.zmtcdn.com/data/user_profile_pictures/658/e37826b8b9cde967f2a10f78f9366658.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A
+4                                     https://b.zmtcdn.com/images/user_avatars/cupcake.png?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A
+5                                      https://b.zmtcdn.com/images/user_avatars/mug_2x.png?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A
+  
+  review.user.profile_deeplink
+1         zomato://u/144912900
+2         zomato://u/144763426
+3         zomato://u/144721676
+4         zomato://u/115723433
+5          zomato://u/30953380
+
+```
+
+```{r}
+get_search(key=key, q="van")
+```
+
+```
+ restaurant.apikey   restaurant.id    restaurant.name
+               key        16647276    The Vanilla Pod
+               
+                                                                                                            restaurant.url
+  https://www.zomato.com/penticton-bc/the-vanilla-pod-penticton?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+  
+  restaurant.switch_to_order_menu               restaurant.cuisines                         restaurant.timings 
+                                0          Pacific Northwest, Pizza    Closed (Mon),11:30 AM to 9 PM (Tue-Sun) 
+                    
+  restaurant.average_cost_for_two            restaurant.price_range                        restaurant.currency 
+                               40                                 3                                          $
+                               
+                                                                                                                          restaurant.highlights
+  Lunch, Dinner, Outdoor Seating, Private Dining Area Available, Gluten Free Options, Table booking recommended, Kid Friendly, Wifi, Ocean Wise
+  
+                restaurant.offers       restaurant.opentable_support              restaurant.is_zomato_book_res
+                             NULL                                  0                                          0
+ 
+        restaurant.mezzo_provider   restaurant.is_book_form_web_view          restaurant.book_form_web_view_url       restaurant.book_again_url
+                            OTHER                                  0             
+   
+  restaurant.thumb
+  https://b.zmtcdn.com/data/reviews_photos/368/ee267e41f36eccf81c96e8efe1480368_1497902196.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=58&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore
+  
+  restaurant.all_reviews_count
+                            13
+  
+  restaurant.photos_url
+  https://www.zomato.com/penticton-bc/the-vanilla-pod-penticton/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop
+  
+  restaurant.photo_count
+                       8
+ 
+       restaurant.photos
+        u_0NDEyMDkwODMwM 
+        u_2MDkzNjI1MTE5M
+        u_g4NTk3MjY5NTk2
+        u_I3MDY2Mzg4ODY4
+        u_YzMDM2NzgyMTY5
+        u_MjQzMDQ3NTI3NT
+        u_zkzNTIxNTMzMTE
+        u_E4NDI3MjAwMzgx
+  
+https://b.zmtcdn.com/data/reviews_photos/368/ee267e41f36eccf81c96e8efe1480368_1497902196.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A    https://b.zmtcdn.com/data/reviews_photos/457/584003825d5b4725f62f8bdd1150a457_1505608477.jpg, https://b.zmtcdn.com/data/reviews_photos/35f/8b92a7d46625a31375dad3a6daf4935f_1497902214.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A, https://b.zmtcdn.com/data/reviews_photos/e3d/a14c30ae979f01acea842e97fbfd0e3d_1497902240.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A, https://b.zmtcdn.com/data/reviews_photos/c97/f15450b2072a768c4f9c6345e0522c97_1497902223.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A,     https://b.zmtcdn.com/data/reviews_photos/9dd/3800cc7629d6709ffa2e72fcdf1289dd_1497902190.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A, https://b.zmtcdn.com/data/reviews_photos/50a/99e5d39187d209bd3cf9e4239158a50a_1497902253.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A, https://b.zmtcdn.com/data/reviews_photos/f0e/1a8a37f6e3185ca9694bca9c86e12f0e_1497902231.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A,
+
+https://b.zmtcdn.com/data/reviews_photos/368/ee267e41f36eccf81c96e8efe1480368_1497902196.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=58&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/457/584003825d5b4725f62f8bdd1150a457_1505608477.jpg?impolicy=newcropandfit&cropw=2448&croph=2448&cropoffsetx=0&cropoffsety=508&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/35f/8b92a7d46625a31375dad3a6daf4935f_1497902214.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=190&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/e3d/a14c30ae979f01acea842e97fbfd0e3d_1497902240.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=244&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/c97/f15450b2072a768c4f9c6345e0522c97_1497902223.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=280&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/9dd/3800cc7629d6709ffa2e72fcdf1289dd_1497902190.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=269&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/50a/99e5d39187d209bd3cf9e4239158a50a_1497902253.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=335&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, https://b.zmtcdn.com/data/reviews_photos/f0e/1a8a37f6e3185ca9694bca9c86e12f0e_1497902231.jpg?impolicy=newcropandfit&cropw=800&croph=800&cropoffsetx=273&cropoffsety=0&cropgravity=NorthWest&fitw=200&fith=200&fittype=ignore, 
+  
+  16647276     1497902288     Jun 20, 2017      640      640
+  16647276     1505608478     Sep 17, 2017     2448     3264
+  16647276     1497902288     Jun 20, 2017      640      640
+  16647276     1497902288     Jun 20, 2017      640      640
+  16647276     1497902288     Jun 20, 2017      640      640
+  16647276     1497902288     Jun 20, 2017      640      640
+  16647276     1497902288     Jun 20, 2017      640      640
+  16647276     1497902288     Jun 20, 2017      640      640
+  
+  Prince Gastronome   Super Foodie  11   f58552
+           KMcClurg         Foodie   3   ffd35d
+  Prince Gastronome   Super Foodie  11   f58552
+  Prince Gastronome   Super Foodie  11   f58552
+  Prince Gastronome   Super Foodie  11   f58552
+  Prince Gastronome   Super Foodie  11   f58552
+  Prince Gastronome   Super Foodie  11   f58552
+  Prince Gastronome   Super Foodie  11   f58552
+
+https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1,   https://www.zomato.com/users/kmcclurg-30161476?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, https://www.zomato.com/users/prince-gastronome-22649291?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1, 
+
+https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, https://b.zmtcdn.com/images/user_avatars/mug_2x.png?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A, https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, https://b.zmtcdn.com/data/user_profile_pictures/4d3/429e28f555a63f3a801aa5f7d9dfb4d3.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A, 
+
+zomato://u/22649291,  NA,
+zomato://u/30161476,  NA, 
+zomato://u/22649291,  NA, 
+zomato://u/22649291,  NA,
+zomato://u/22649291,  NA,
+zomato://u/22649291,    ,
+zomato://u/22649291,  NA,
+zomato://u/22649291,  NA,
+  
+                                                                                                                                                   restaurant.menu_url
+  https://www.zomato.com/penticton-bc/the-vanilla-pod-penticton/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop
+  
+                                                                                                                                             restaurant.featured_image
+                        https://b.zmtcdn.com/data/reviews_photos/368/ee267e41f36eccf81c96e8efe1480368_1497902196.jpg?fit=around%7C640%3A640&crop=640%3A640%3B%2A%2C%2A
+  
+  restaurant.has_online_delivery    restaurant.is_delivering_now    restaurant.include_bogo_offers              restaurant.deeplink
+                               0                               0                              TRUE     zomato://restaurant/16647276
+
+  restaurant.is_table_reservation_supported   restaurant.has_table_booking
+                                          0                              0
+  
+                                                                                                                   restaurant.events_url
+  https://www.zomato.com/penticton-bc/the-vanilla-pod-penticton/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1
+  
+  restaurant.phone_numbers   restaurant.establishment   restaurant.establishment_types    restaurant.R.res_id
+         +1 (250) 493-9463                       NULL                             NULL               16647276 
+  
+  restaurant.R.has_menu_status.delivery    restaurant.R.has_menu_status.takeaway
+                                     -1                                       -1
+  
+            restaurant.location.address      restaurant.location.locality      restaurant.location.city
+  425 Middle Bench Rd, Penticton V2A8S5                         Penticton                   Penticton
+  
+             restaurant.location.city_id     restaurant.location.latitude  restaurant.location.longitude
+                                    2996                    49.5133854000                -119.5714503000
+  
+             restaurant.location.zipcode   restaurant.location.country_id  
+                                  V2A8S5                               37
+  
+    restaurant.location.locality_verbose   restaurant.user_rating.aggregate_rating 
+                    Penticton, Penticton                                       3.5 
+  
+      restaurant.user_rating.rating_text   restaurant.user_rating.rating_color 
+                                    Good                                9ACD32
+ 
+            restaurant.user_rating.votes   restaurant.user_rating.rating_obj.title.text
+                                      30                                            3.5
+  
+
+  restaurant.user_rating.rating_obj.bg_color.type   restaurant.user_rating.rating_obj.bg_color.tint   restaurant.all_reviews.reviews
+                                             lime                                                                               NULL
+                                             
+```

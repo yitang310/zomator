@@ -42,10 +42,10 @@ test_that("getlocation_details", {
 test_that("getlocations", {
   expect_error(get_locations(""))
   expect_error(get_locations("528b6ee8d624e5e3e741f1fbd895b760"))
-  expect_length(get_locations("528b6ee8d624e5e3e741f1fbd895b760","New York"),9)
-  expect_length(get_locations("528b6ee8d624e5e3e741f1fbd895b760","New York",1,2),9)
-  expect_length(get_locations("528b6ee8d624e5e3e741f1fbd895b760","New York",1,2,1),9)
-  expect_length(get_locations("528b6ee8d624e5e3e741f1fbd895b760","New York",1),9)
+  expect_length(get_locations("528b6ee8d624e5e3e741f1fbd895b760","vancouver"),9)
+  expect_length(get_locations("528b6ee8d624e5e3e741f1fbd895b760","vancouver",1,2),9)
+  expect_length(get_locations("528b6ee8d624e5e3e741f1fbd895b760","vancouver",1,2,1),9)
+  expect_length(get_locations("528b6ee8d624e5e3e741f1fbd895b760","vancouver",1),9)
 })
 
 

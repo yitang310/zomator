@@ -4,7 +4,6 @@
 #' @description
 #' return the list of category types
 #'
-#' Enter parameter values
 #' @param key your API key
 #'
 #' @return

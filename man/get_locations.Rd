@@ -17,9 +17,6 @@ get_locations(key, query, lat = NULL, lon = NULL, count = NULL)
 
 \item{count}{max number of results to fetch, integer}
 }
-\value{
-
-}
 \description{
 :
 Search for Zomato locations by keyword. Provide

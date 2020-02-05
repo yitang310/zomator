@@ -9,8 +9,6 @@
 #' @param lon longitude, double
 #' @param count max number of results to fetch, integer
 #'
-#' @return
-#'
 #' @name
 #' get_locations
 #'
