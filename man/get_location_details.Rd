@@ -45,7 +45,7 @@ Get Foodie Index, Nightlife Index, Top Cuisines
 and Best rated restaurants in a given location
 }
 \examples{
-get_location_details("528b6ee8d624e5e3e741f1fbd895b760",1,"city")
+get_location_details("testkey",1,"city")
 
 }
 \author{

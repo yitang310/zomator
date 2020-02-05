@@ -29,12 +29,17 @@
 #'
 #' @export
 #' @examples
-#' get_cities(key="00b8630a1745b3dda0d7ec926bba5c04",q="van")
+#' get_cities(key="testkey",q="van")
 
 #function for finding the Zomato ID and other details for a city
 get_cities <- function(key=NULL,q=NULL,lat=NULL,lon=NULL,city_ids=NULL,count=NULL){
   #check if given api
   apikey_check(key)
+  #check if the testkey
+  if (key=="testkey"){
+    testword<-"This is a testkey."
+    return(testword)
+  }
   #check if given city name
   if (is.null(q)){
     stop("Please enter the city name.")

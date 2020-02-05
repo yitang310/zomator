@@ -44,7 +44,7 @@ Get Foodie and Nightlife Index, list of popular
 cuisines and nearby restaurants around the given coordinates
 }
 \examples{
-get_geocode("528b6ee8d624e5e3e741f1fbd895b760",1.2,2.3)
+get_geocode("testkey",1.2,2.3)
 }
 \author{
 Huazi Li <632473742@qq.com>

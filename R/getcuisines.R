@@ -21,12 +21,19 @@
 #'
 #' @export
 #' @examples
-#' get_cuisines(key="528b6ee8d624e5e3e741f1fbd895b760",city_id=256)
+#' get_cuisines(key="testkey",city_id=256)
 
 #function for finding all cuisines of restaurants listed in a city
 get_cuisines<-function(key=NULL,city_id=NULL,lat=NULL,lon=NULL){
   #check if given api
   apikey_check(key)
+
+  #check if the testkey
+  if (key=="testkey"){
+    testword<-"This is a testkey."
+    return(testword)
+  }
+
   #check if given city_id
   if (is.null(city_id)){
     stop("Please enter the city ID. You can seach city ID by using get_cities function.")

@@ -31,7 +31,7 @@ share_url (string, optional) short URL for apps and social sharing
 search for Zomato Restaurant Collections in a City
 }
 \examples{
-get_collections(key="00b8630a1745b3dda0d7ec926bba5c04",city_id=256)
+get_collections(key="testkey",city_id=256)
 }
 \author{
 Yi Tang <tangyi2014@gmail.com>

@@ -17,7 +17,7 @@ category_name (string) Name of the category type
 return the list of category types
 }
 \examples{
-get_categories("00b8630a1745b3dda0d7ec926bba5c04")
+get_categories("testkey")
 }
 \author{
 Yi Tang <tangyi2014@gmail.com>

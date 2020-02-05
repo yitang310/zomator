@@ -44,7 +44,7 @@
 #'
 #' @export
 #' @examples
-#' get_geocode("528b6ee8d624e5e3e741f1fbd895b760",1.2,2.3)
+#' get_geocode("testkey",1.2,2.3)
 
 
 get_geocode<-function(key=NULL,lat=NULL,lon=NULL){
@@ -53,6 +53,11 @@ get_geocode<-function(key=NULL,lat=NULL,lon=NULL){
   # check if given lat and lon
   if (is.null(lat) | is.null(lon)){
     stop("Please giving lat and lon.")
+  }
+  #check if the testkey
+  if (key=="testkey"){
+    testword<-"This is a testkey."
+    return(testword)
   }
 
   url <- httr::modify_url("https://developers.zomato.com",

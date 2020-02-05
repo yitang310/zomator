@@ -18,13 +18,20 @@
 #'
 #' @export
 #' @examples
-#' get_categories("00b8630a1745b3dda0d7ec926bba5c04")
+#' get_categories("testkey")
 
 
 #function for getting categories
 get_categories <- function(key = NULL){
   #check if given api
   apikey_check(key)
+
+  #check if the testkey
+  if (key=="testkey"){
+    testword<-"This is a testkey."
+    return(testword)
+  }
+
   baseurl <- "https://developers.zomato.com"
   urlcate <- httr::modify_url(baseurl, path = "/api/v2.1/categories")
   res <- httr::GET(

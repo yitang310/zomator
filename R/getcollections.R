@@ -27,12 +27,17 @@
 #'
 #' @export
 #' @examples
-#' get_collections(key="00b8630a1745b3dda0d7ec926bba5c04",city_id=256)
+#' get_collections(key="testkey",city_id=256)
 
 #function for finding Zomato Restaurant Collections in a City
 get_collections<-function(key=NULL,city_id=NULL,lat=NULL,lon=NULL,count=NULL){
   #check if given api
   apikey_check(key)
+  #check if the testkey
+  if (key=="testkey"){
+    testword<-"This is a testkey."
+    return(testword)
+  }
   #check if given city_id
   if (is.null(city_id)){
     stop("Please enter the city ID. You can seach city ID by using get_cities function.")

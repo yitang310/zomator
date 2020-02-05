@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 ```{r setup}
 #library(zomator)
 
-key="528b6ee8d624e5e3e741f1fbd895b760"
+key="testkey"
 ```
 
 # Intro to the zomator package
@@ -531,7 +531,7 @@ get_cuisines(key=key,city_id=256)
 ```
 
 ```{r}
-get_establishments(key =key,city_id = 256)
+get_establishments(key=key,city_id = 256)
 ```
 
 ```
@@ -572,9 +572,9 @@ get_establishments(key =key,city_id = 256)
 get_geocode(key=key,1.2,2.3)
 ```
 
-```{r}
+```{r eval=FALSE}
 data_geocode <- get_geocode(key=key,1.2,2.3)
-plot(data_geocode$restaurant.location.latitude,data_geocode$restaurant.location.longitude,main="The Locations of 10 Restaurants in Alamo Heights San Antonio")
+plot(data_geocode$restaurant.location.latitude,data_geocode$restaurant.location.longitude,main="The Locations of 10 Restaurants in Alamo Heights San Antonio",cex.main=0.9,cex.lab=0.9)
 ```
 ```
                  restaurant.apikey restaurant.id               restaurant.name
@@ -841,7 +841,7 @@ plot(data_geocode$restaurant.location.latitude,data_geocode$restaurant.location.
 get_location_details(key=key,1,"city")
 ```
 
-```{r}
+```{r eval=FALSE}
 data_location_details<-get_location_details(key=key,256,"city")
 barplot(data_location_details$all_reviews_count,names.arg=data_location_details$name,las=2,cex.names = 0.5,cex.lab = 0.65, main = "Reviews Count for 10 Restaurants in Metro Vancouver British Columbia",cex.main=0.9)
 barplot(data_location_details$photo_count,names.arg=data_location_details$name,las=2,cex.names = 0.5,cex.lab = 0.65, main = "Photo Count of 10 Restaurants in Metro Vancouver British Columbia",cex.main=0.9)
