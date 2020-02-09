@@ -1,7 +1,7 @@
 Package: zomator
 Type: Package
 Title: Wrapper to the Zomato API
-Version: 0.1.4
+Version: 0.1.5
 Authors@R: c(person("Yi", "Tang", email = "tangyi2014@gmail.com",role = c("aut", "cre")),
     person("Chenxi", "Yang", email = "chenxxiyang@gmail.com",role = "aut"),
     person("Huazi", "Li", email = "632473742@qq.com",role = "aut"))
@@ -12,7 +12,11 @@ Encoding: UTF-8
 LazyData: true
 Imports: httr, jsonlite
 RoxygenNote: 6.1.1
-Suggests: knitr, rmarkdown, testthat
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat,
+    covr
 VignetteBuilder: knitr
 NeedsCompilation: no
 Packaged: 2020-02-05 09:24:13 UTC; ty

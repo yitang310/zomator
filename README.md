@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/yitang310/zomator.svg?branch=master)](https://travis-ci.org/yitang310/zomator)
+[![Codecov test coverage](https://codecov.io/gh/yitang310/zomator/branch/master/graph/badge.svg)](https://codecov.io/gh/yitang310/zomator?branch=master)
 
 # zomator
 Wrapper to the Zomato API
@@ -7,7 +8,7 @@ Wrapper to the Zomato API
 Yi Tang, Chenxi Yang, Huazi Li
 
 ### Installation
-`zomator` can be installed from our group [Github](https://github.com/yitang310/zomator). 
+`zomator` can be installed from our group [Github](https://github.com/yitang310/zomator).
 
 ```
 install.packages("devtools")
@@ -63,7 +64,7 @@ Inside `zomator`, there are 12 functions:
 
 - get_locations: Li (author), Tang (editor)
 
-- get_dailymenu: Yang (author) 
+- get_dailymenu: Yang (author)
 
 - get_restaurant: Yang (author)
 
