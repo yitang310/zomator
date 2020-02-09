@@ -20,6 +20,7 @@ test_that("test get_reviews",{
   expect_true(length(get_reviews(key3,256)) > 0)
   expect_true(length(get_reviews(key3,256)) != 0)
   expect_is(get_reviews(key3,16507624), "character")
+  expect_error(get_reviews("123456",16507624))
 })
 
 #test get_restaurant
@@ -28,7 +29,7 @@ test_that("test get_restaurant",{
   expect_error(get_restaurant("123456"))
   expect_is(get_restaurant(key3,16507624), "character")
   expect_true(length(get_restaurant(key3,16507624)) != 10)
-  expect_true(length(get_restaurant(key3,16507624)) != 0)
+  expect_error(get_restaurant("123456",16507624))
 })
 
 #test get_search

@@ -40,19 +40,17 @@ get_establishments <- function(key = NULL,city_id = NULL,lat = NULL,lon = NULL){
 
   url <- httr::modify_url("https://developers.zomato.com",
                           path = "/api/v2.1/establishments")
-  params <- list("city_id" = city_id,"lat" = lat, "lon" = lon)
+  params <- list("city_id" = city_id,
+                 "lat" = lat,
+                 "lon" = lon)
   res <- httr::GET(
     url,
-    httr::add_headers(Accept="application/json","user-key"=key),query=params)
-  datalist <- jsonlite::fromJSON(
-    httr::content(
-      res, as = "text", type = "application/json", encoding = "UTF-8"
-    ),
-    flatten = TRUE
-  )
+    httr::add_headers(Accept="application/json",
+                      "user-key"=key),
+    query=params)
+  #read json into dataframe
+  datalist<-read_json(res)
   #check if return results
-  if (length(datalist$establishments) == 0){
-    stop("Please try another city ID.")
-  }
+  if (length(datalist$establishments) == 0){stop("Please try another city ID.")}
   return(datalist$establishments)
 }

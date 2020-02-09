@@ -45,26 +45,23 @@ get_cities <- function(key=NULL,q=NULL,lat=NULL,lon=NULL,city_ids=NULL,count=NUL
     stop("Please enter the city name.")
   }
   baseurl <- "https://developers.zomato.com"
-  urlcate <- httr::modify_url(baseurl, path = "/api/v2.1/cities")
+  urlcate <- httr::modify_url(baseurl,
+                              path = "/api/v2.1/cities")
   res <- httr::GET(
     url = urlcate,
     config = httr::add_headers("user-key" = key),
-    query = list("q"=q,"lat"=lat,"lon"=lon,"city_ids"=city_ids,"count"=count)
+    query = list("q"=q,
+                 "lat"=lat,
+                 "lon"=lon,
+                 "city_ids"=city_ids,
+                 "count"=count)
   )
   #check if the api key can used to connect to zomato
   apikey_connectioncheck(res)
   #read json into dataframe
-  datalist <- jsonlite::fromJSON(
-    httr::content(
-      res, as = "text", type = "application/json", encoding = "UTF-8"
-    ),
-    flatten = TRUE
-  )
+  datalist<-read_json(res)
   #check if return results
-  if (length(datalist$location_suggestions) == 0){
-    stop("Please try another city name.")
-  }
+  if (length(datalist$location_suggestions) == 0){stop("Please try another city name.")}
   #only want the dataframe
-  datalist<-datalist$location_suggestions
-  return(datalist)
+  return(datalist$location_suggestions)
 }

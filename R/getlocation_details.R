@@ -64,12 +64,13 @@ get_location_details<-function(key=NULL,entity_id = NULL,entity_type = NULL){
   url <- httr::modify_url("https://developers.zomato.com",
                           path = "/api/v2.1/location_details")
 
-  resp <- httr::GET(url,httr::add_headers(Accept="application/json",
-                                          "user-key"=key),
-                    query=list(entity_id=entity_id,entity_type=entity_type))
+  resp <- httr::GET(url,
+                    httr::add_headers(Accept="application/json",
+                                      "user-key"=key),
+                    query=list(entity_id=entity_id,
+                    entity_type=entity_type))
   # read json into dataframe
   lodata <- jsonlite::fromJSON(httr::content(resp, as = 'text', encoding = 'UTF-8'), flatten = TRUE)
-
   a <- names(lodata$best_rated_restaurant)
   c <- "apikey|url|link|thumb|featured_image|zomato_events|R.res_id|custom|profile_image"
   b <- lodata$best_rated_restaurant[!grepl(c, a)]

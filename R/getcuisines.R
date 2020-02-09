@@ -43,23 +43,17 @@ get_cuisines<-function(key=NULL,city_id=NULL,lat=NULL,lon=NULL){
   res <- httr::GET(
     url = urlcate,
     config = httr::add_headers("user-key" = key),
-    query = list("city_id"=city_id,"lat"=lat,"lon"=lon)
+    query = list("city_id"=city_id,
+                 "lat"=lat,
+                 "lon"=lon)
   )
   #check if the api key can used to connect to zomato
   apikey_connectioncheck(res)
   #read json into dataframe
-  datalist <- jsonlite::fromJSON(
-    httr::content(
-      res, as = "text", type = "application/json", encoding = "UTF-8"
-    ),
-    flatten = TRUE
-  )
+  datalist<-read_json(res)
   #check if return results
-  if (length(datalist$cuisines) == 0){
-    stop("Please try another city ID.")
-  }
+  if (length(datalist$cuisines) == 0){stop("Please try another city ID.")}
   #only want the dataframe
-  datalist<-datalist$cuisines
-  return(datalist)
+  return(datalist$cuisines)
 }
 

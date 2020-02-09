@@ -33,7 +33,9 @@ get_categories <- function(key = NULL){
   }
 
   baseurl <- "https://developers.zomato.com"
-  urlcate <- httr::modify_url(baseurl, path = "/api/v2.1/categories")
+  urlcate <- httr::modify_url(
+    baseurl,
+    path = "/api/v2.1/categories")
   res <- httr::GET(
     url = urlcate,
     config = httr::add_headers("user-key" = key)
@@ -41,15 +43,9 @@ get_categories <- function(key = NULL){
   #check if the api key can used to connect to zomato
   apikey_connectioncheck(res)
   #read json into dataframe
-  datalist <- jsonlite::fromJSON(
-    httr::content(
-      res, as = "text", type = "application/json", encoding = "UTF-8"
-    ),
-    flatten = TRUE
-  )
+  datalist<-read_json(res)
   #only want the dataframe
-  datalist <- datalist$categories
-  return(datalist)
+  return(datalist$categories)
 }
 
 #function for checking if api key is provided
@@ -67,3 +63,15 @@ apikey_connectioncheck<-function(res){
     }
   }
 }
+
+#function for read json
+read_json<-function(res){
+  datalist <- jsonlite::fromJSON(
+    httr::content(
+      res, as = "text", type = "application/json", encoding = "UTF-8"
+    ),
+    flatten = TRUE
+  )
+  return (datalist)
+}
+

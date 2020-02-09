@@ -37,24 +37,20 @@ get_locations<-function(key,query,
   url <- httr::modify_url("https://developers.zomato.com",
                           path = "/api/v2.1/locations")
 
-  params=list("query"=query,"lat" = lat,"lon" = lon,"count"= count)
+  params=list("query"=query,
+              "lat" = lat,
+              "lon" = lon,
+              "count"= count)
   res <- httr::GET(url,httr::add_headers(Accept="application/json",
-                                         "user-key"=key),query=params)
+                                         "user-key"=key),
+                   query=params)
 
   #check if the api key can used to connect to zomato
   apikey_connectioncheck(res)
   #read json into dataframe
-  resdata <- jsonlite::fromJSON(
-    httr::content(
-      res, as = "text", type = "application/json", encoding = "UTF-8"
-    ),
-    flatten = TRUE
-  )
+  datalist<-read_json(res)
   #check if return results
-  if (length(resdata$location_suggestions) == 0){
-    stop("Please try another city name.")
-  }
-  return(resdata$location_suggestions)
-}
+  if (length(resdata$location_suggestions) == 0){stop("Please try another city name.")}
+  return(resdata$location_suggestions)}
 
 

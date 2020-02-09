@@ -55,8 +55,11 @@ get_dailymenu <- function(key=NULL, res_id=NULL) {
   apikey_rescheck(res)
 
   # Convert json into dataframe
-  dmdata <- jsonlite::fromJSON(httr::content(res, as = 'text', encoding = 'UTF-8'), flatten = TRUE)
-
+  dmdata <- jsonlite::fromJSON(
+    httr::content(res,
+                  as = 'text',
+                  encoding = 'UTF-8'),
+    flatten = TRUE)
   return(dmdata$daily_menus)
 }
 

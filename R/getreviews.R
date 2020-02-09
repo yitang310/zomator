@@ -58,7 +58,8 @@ get_reviews <- function(key=NULL, res_id=NULL) {
   # Sending request
   res <- httr::GET(
     url = URL,
-    path = paste0("/api/v2.1/", "reviews"),
+    path = paste0("/api/v2.1/",
+                  "reviews"),
     config = httr::add_headers("user-key" = key),
     query = params,
     httr::user_agent("httr")

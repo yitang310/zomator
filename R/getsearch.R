@@ -53,10 +53,19 @@ get_search<- function(key=NULL,
 
   URL <- 'https://developers.zomato.com'
   params <- list(
-    q = q, entity_id = entity_id, entity_type = entity_type,
-    start = start, count = count, lat = lat, lon = lon, radius = radius,
-    cuisines = cuisines, establishment_type = establishment_type,
-    category = category, collection_id = collection_id, sort = sort,
+    q = q,
+    entity_id = entity_id,
+    entity_type = entity_type,
+    start = start,
+    count = count,
+    lat = lat,
+    lon = lon,
+    radius = radius,
+    cuisines = cuisines,
+    establishment_type = establishment_type,
+    category = category,
+    collection_id = collection_id,
+    sort = sort,
     order = order
   )
 
@@ -71,9 +80,7 @@ get_search<- function(key=NULL,
   )
 
   # Check if parameters are right
-  if (is.null(httr::content(res)$results_found)){
-    stop("Please try other parameter values.")
-  }
+  if (is.null(httr::content(res)$results_found)){stop("Please try other parameter values.")}
 
   # Check whether the connection is successful
   apikey_connectioncheck(res)

@@ -63,15 +63,14 @@ get_geocode<-function(key=NULL,lat=NULL,lon=NULL){
   url <- httr::modify_url("https://developers.zomato.com",
                           path = "/api/v2.1/geocode")
 
-  res <- httr::GET(url,httr::add_headers(Accept="application/json",
+  res <- httr::GET(url,
+                   httr::add_headers(Accept="application/json",
                                          "user-key"=key),
-                   query=list("lat"=lat,"lon"=lon))
-  datalist <- jsonlite::fromJSON(
-    httr::content(
-      res, as = "text", type = "application/json", encoding = "UTF-8"
-    ),
-    flatten = TRUE
-  )
+                   query=list("lat"=lat,
+                              "lon"=lon))
+
+  #read json into dataframe
+  datalist<-read_json(res)
   if(length(datalist$nearby_restaurants)==0){
     stop("Please try another lat and lon.")
   }

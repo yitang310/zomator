@@ -28,7 +28,7 @@ test_that("test get_collections",{
   expect_error(get_collections("123456"))
   expect_true(length(get_collections(key1))>0)
   expect_is(get_collections(key1,256), "character")
-  expect_true(length(get_collections(key1,256)) != 0)
+  expect_error(get_collections("123456",256))
 })
 
 #test get_cuisines
@@ -38,5 +38,6 @@ test_that("test get_cuisines",{
   expect_true(length(get_cuisines(key1))>0)
   expect_is(get_collections(key1,256), "character")
   expect_true(length(get_cuisines(key1,256)) !=10)
+  expect_error(get_cuisines("123456",256))
 })
 
