@@ -40,13 +40,15 @@ get_dailymenu <- function(key=NULL, res_id=NULL) {
     stop("Please enter the restaurant ID.")
   }
   URL <- 'https://developers.zomato.com'
-  params <- list("res_id" = res_id)
+  params <- list(
+    "res_id" = res_id)
 
   # Sending request
   res <- httr::GET(
     url = URL,
     path = paste0("/api/v2.1/","dailymenu"),
-    config = httr::add_headers("user-key" = key),
+    config = httr::add_headers(
+      "user-key" = key),
     query = params,
     httr::user_agent("httr")
   )
@@ -55,22 +57,15 @@ get_dailymenu <- function(key=NULL, res_id=NULL) {
   apikey_rescheck(res)
 
   # Convert json into dataframe
-  dmdata <- jsonlite::fromJSON(
-    httr::content(res,
-                  as = 'text',
-                  encoding = 'UTF-8'),
-    flatten = TRUE)
+  dmdata<-read_json(res)
   return(dmdata$daily_menus)
 }
 
 # Check whether the res_id and api connection
 apikey_rescheck<-function(res){
-  print(res)
   if (!is.null(httr::content(res)$code)){
     if (httr::content(res)$code==403){
       stop("please try another API key.")
-    } else{
-      stop("please try another res_id.")
-    }
+    } else{stop("please try another res_id.")}
   }
 }

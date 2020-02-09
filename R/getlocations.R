@@ -34,14 +34,17 @@ get_locations<-function(key,query,
     stop("Please enter the city name.")
   }
 
-  url <- httr::modify_url("https://developers.zomato.com",
-                          path = "/api/v2.1/locations")
+  url <- httr::modify_url(
+    "https://developers.zomato.com",
+    path = "/api/v2.1/locations")
 
   params=list("query"=query,
               "lat" = lat,
               "lon" = lon,
               "count"= count)
-  res <- httr::GET(url,httr::add_headers(Accept="application/json",
+  res <- httr::GET(url,
+                   httr::add_headers(
+                     Accept="application/json",
                                          "user-key"=key),
                    query=params)
 
@@ -51,6 +54,7 @@ get_locations<-function(key,query,
   datalist<-read_json(res)
   #check if return results
   if (length(resdata$location_suggestions) == 0){stop("Please try another city name.")}
-  return(resdata$location_suggestions)}
+  return(resdata$location_suggestions)
+}
 
 
