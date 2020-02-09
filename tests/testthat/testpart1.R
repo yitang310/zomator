@@ -19,7 +19,7 @@ test_that("test get_cities",{
   expect_error(get_cities("123456"))
   expect_true(length(get_cities(key1))>0)
   expect_is(get_cities(key1,"van"), "character")
-  expect_type(get_cities(key1,"van",lat=NULL,lon=NULL,city_ids=NULL,count=12),"character")
+  expect_error(get_cities("123456","van",lat=NULL,lon=NULL,city_ids=NULL,count=12))
 })
 
 #test get_collections
